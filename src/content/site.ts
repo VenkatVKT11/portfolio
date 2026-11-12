@@ -10,7 +10,7 @@ export const site = {
   tagline: "Digital Marketing × AI × Data",
   location: "Chennai, Tamil Nadu, India",
   /** Shown as the email link in the Contact section. */
-  email: "venkateanvkt0411@gmail.com",
+  email: "venkatesanvkt0411@gmail.com",
   /** Kept here for reference only; the phone number is not shown anywhere on the site. */
   phone: "+91 63792 29569",
   phoneHref: "+916379229569",
