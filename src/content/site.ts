@@ -148,7 +148,6 @@ export const skills = {
       accent: false,
       evidence: ["ecommerce-digital-marketing", "real-estate-digital-marketing"],
       skills: [
-        "Performance marketing",
         "Meta Ads",
         "Google Ads",
         "SEO",
