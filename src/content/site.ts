@@ -23,7 +23,7 @@ export const site = {
     process.env.NEXT_PUBLIC_SITE_URL ??
     (process.env.VERCEL_PROJECT_PRODUCTION_URL
       ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-      : "https://example.com"),
+      : "https://venkatesanvkt-11.vercel.app"),
   /** Paste full profile URLs once verified, e.g. "https://www.linkedin.com/in/…". */
   linkedin: "https://www.linkedin.com/in/venkatesan1104/",
   github: "https://github.com/VenkatVKT11",
