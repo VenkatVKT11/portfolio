@@ -41,7 +41,7 @@ export const site = {
 export const hero = {
   headline: "Turning Digital Strategy into Measurable Growth.",
   description:
-    "I combine performance marketing, AI-powered workflows, creative strategy, and data analytics to build smarter digital growth.",
+    "I combine digital marketing campaigns, AI-powered workflows, creative strategy, and data analytics to build smarter digital growth.",
   /** The three words of the title line. Each one opens the project that shows it. */
   pillars: [
     { name: "Digital Marketing", project: "ecommerce-digital-marketing" },
@@ -128,7 +128,7 @@ export const about = {
   heading: "About me",
   statement: "I studied AI and data science, then took it into marketing.",
   paragraphs: [
-    "I started as a digital marketing intern in April 2026 and became Digital Marketing Manager that July. My day is split between performance marketing on Meta and Google, and building automations that save the team from repeating the same task twice.",
+    "I started as a digital marketing intern in April 2026 and became Digital Marketing Manager that July. My day is split between managing campaigns on Meta and Google, and building automations that save the team from repeating the same task twice.",
     "I care most about lead generation, video marketing and putting AI to practical use: prompts that produce usable content, and workflows that run without someone watching them.",
   ],
   facts: [
@@ -466,11 +466,14 @@ export const experience = [
     place: "PN Global Enterprises",
     meta: ["Full-time", "Hybrid"],
     points: [
-      "Digital marketing campaign planning and execution.",
-      "Social media content and campaign management.",
-      "Paid advertising and brand communication.",
-      "SEO and SEO audits.",
-      "Marketing performance and campaign activities.",
+      "Handled client communications and requirement discussions to develop practical experience in client handling, professional communication, and understanding business requirements.",
+      "Gained practical exposure to Digital Marketing through hands-on experience with Meta Ads and Google Ads (campaign creation, audience targeting, lead generation, and performance analytics).",
+      "Managed 4–5 social media pages, driving content publishing, engagement activities, and organic follower growth.",
+      "Improved social media audience quality by removing inactive and bot followers to focus on an authentic, real audience.",
+      "Designed social media posters and marketing creatives in Canva, developing ideas and assets using AI prompting and AI-based tools.",
+      "Explored AI tools for content design, image editing, and video creation for digital marketing workflows.",
+      "Applied Search Engine Optimisation (SEO) fundamentals including keyword research and content optimisation.",
+      "Gained practical exposure to e-commerce website handling, functional testing, and day-to-day operations on a live e-commerce platform.",
     ],
     current: true,
   },
