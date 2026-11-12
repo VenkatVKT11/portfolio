@@ -16,14 +16,10 @@ export const site = {
   phoneHref: "+916379229569",
   /**
    * The site's public address, used for search engines and link previews.
-   * Set NEXT_PUBLIC_SITE_URL to your own domain. Without it, a Vercel deployment
-   * uses its production address; anywhere else falls back to a placeholder.
+   * Change it here if the address changes, or set NEXT_PUBLIC_SITE_URL to override it.
+   * (Vercel's own "production URL" variable is not used: it pointed at an address that returns 404.)
    */
-  url:
-    process.env.NEXT_PUBLIC_SITE_URL ??
-    (process.env.VERCEL_PROJECT_PRODUCTION_URL
-      ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}`
-      : "https://venkatesanvkt-11.vercel.app"),
+  url: process.env.NEXT_PUBLIC_SITE_URL ?? "https://venkatesanvkt-11.vercel.app",
   /** Paste full profile URLs once verified, e.g. "https://www.linkedin.com/in/…". */
   linkedin: "https://www.linkedin.com/in/venkatesan1104/",
   github: "https://github.com/VenkatVKT11",

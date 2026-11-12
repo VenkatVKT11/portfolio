@@ -53,5 +53,5 @@ Everything served to visitors is in `public/`:
 
 ## Before going live
 
-- Set `NEXT_PUBLIC_SITE_URL` to the site's real address (for example in Vercel's environment variables). Search engines and link previews use it.
+- The site's public address is set in `src/content/site.ts` (`site.url`). Search engines and link previews use it, so update it if the address changes.
 - There is no contact form. Visitors reach you through the LinkedIn, GitHub and email links in the Get in touch section.
