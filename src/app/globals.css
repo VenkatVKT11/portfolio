@@ -803,13 +803,6 @@ dialog.is-closing::backdrop {
   }
 }
 
-/* Accent gradient text (hero headline ending). */
-.text-gradient {
-  background: linear-gradient(100deg, rgb(var(--acc-hi-rgb)) 0%, var(--acc-a) 45%, rgb(var(--acc2-rgb)) 100%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  color: transparent;
-}
 /* Aurora: the hero's glows drift slowly. */
 .aurora {
   animation: drift 18s ease-in-out infinite alternate;
@@ -1474,71 +1467,87 @@ dialog.is-closing::backdrop {
 }
 
 /* =====================================================================
-   Headline colour. "Measurable Growth." is written in the theme's own
-   colour (the letters, not a bar behind them), in every theme and mode.
-   Light modes use deeper shades so the letters stay readable.
+   Theme-aware Hero text highlight system.
+   Dynamically adapts "Measurable Growth." text color and background highlight
+   to the active theme & mode via centralized CSS variables.
    ===================================================================== */
 :root {
-  --hl-a: #1447ff;
-  --hl-b: #5b3dff;
+  --hero-highlight-bg: rgb(20 71 255 / 0.12);
+  --hero-highlight-text: #0d38d9;
 }
-[data-theme="pastel"] {
-  --hl-a: #2f5fa8;
-  --hl-b: #b5583a;
-}
+
+/* Light mode theme tokens */
 [data-theme="noir"] {
-  --hl-a: #a37b00;
-  --hl-b: #7a5c00;
+  --hero-highlight-bg: #ffc900;
+  --hero-highlight-text: #080908;
 }
 [data-theme="ivory"] {
-  --hl-a: #5b7a00;
-  --hl-b: #3e5400;
+  --hero-highlight-bg: #cdf22b;
+  --hero-highlight-text: #080908;
 }
 [data-theme="crimson"] {
-  --hl-a: #d41514;
-  --hl-b: #8a0e0d;
+  --hero-highlight-bg: rgb(212 21 20 / 0.15);
+  --hero-highlight-text: #b8100f;
 }
 [data-theme="coral"] {
-  --hl-a: #cf3a21;
-  --hl-b: #9c2b17;
+  --hero-highlight-bg: rgb(255 75 50 / 0.18);
+  --hero-highlight-text: #b52d18;
 }
-[data-theme="light"][data-mode="dark"] {
-  --hl-a: #86a0ff;
-  --hl-b: #b4a3ff;
+[data-theme="pastel"] {
+  --hero-highlight-bg: rgb(141 185 240 / 0.4);
+  --hero-highlight-text: #1d4b8f;
 }
-[data-theme="pastel"][data-mode="dark"] {
-  --hl-a: #8db9f0;
-  --hl-b: #f5b69e;
+[data-theme="light"] {
+  --hero-highlight-bg: rgb(20 71 255 / 0.12);
+  --hero-highlight-text: #0d38d9;
 }
+
+/* Dark mode fallback for any theme */
+[data-mode="dark"] {
+  --hero-highlight-bg: rgb(var(--acc-rgb) / 0.24);
+  --hero-highlight-text: var(--acc-a);
+}
+
+/* Dark mode specific theme tokens */
 [data-theme="noir"][data-mode="dark"] {
-  --hl-a: #ffc900;
-  --hl-b: #ffe27a;
+  --hero-highlight-bg: rgb(255 201 0 / 0.24);
+  --hero-highlight-text: #ffcf1a;
 }
 [data-theme="ivory"][data-mode="dark"] {
-  --hl-a: #cdf22b;
-  --hl-b: #e6ff8a;
+  --hero-highlight-bg: rgb(205 242 43 / 0.24);
+  --hero-highlight-text: #cdf22b;
 }
 [data-theme="crimson"][data-mode="dark"] {
-  --hl-a: #ff4a47;
-  --hl-b: #ff8a87;
+  --hero-highlight-bg: rgb(212 21 20 / 0.28);
+  --hero-highlight-text: #ff5c59;
 }
 [data-theme="coral"][data-mode="dark"] {
-  --hl-a: #ff4b32;
-  --hl-b: #ff8a73;
+  --hero-highlight-bg: rgb(255 75 50 / 0.26);
+  --hero-highlight-text: #ff6b55;
 }
+[data-theme="pastel"][data-mode="dark"] {
+  --hero-highlight-bg: rgb(141 185 240 / 0.25);
+  --hero-highlight-text: #8db9f0;
+}
+[data-theme="light"][data-mode="dark"] {
+  --hero-highlight-bg: rgb(42 85 255 / 0.26);
+  --hero-highlight-text: #86a0ff;
+}
+
+.hero-highlight,
 :root .text-gradient {
-  color: var(--hl-a);
-  background: linear-gradient(100deg, var(--hl-a) 10%, var(--hl-b) 95%);
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
-  padding: 0 0.04em 0.08em 0;
-  margin: 0;
-  border-radius: 0;
-  filter: none;
-  animation: none;
+  color: var(--hero-highlight-text);
+  background: var(--hero-highlight-bg);
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  -webkit-text-fill-color: currentColor;
+  padding: 0.04em 0.2em;
+  margin: 0 -0.04em;
+  border-radius: 0.2em;
   -webkit-box-decoration-break: clone;
   box-decoration-break: clone;
+  display: inline;
+  transition: color 0.25s ease, background 0.25s ease;
 }
 
 /* =====================================================================

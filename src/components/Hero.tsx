@@ -71,8 +71,8 @@ export function Hero() {
             style={delay(240)}
           >
             <h1 className="hero-title">
-              {/* The last two words carry the accent gradient. */}
-              {headStart} <span className="text-gradient">{headEnd}</span>
+              {/* The last two words carry the theme-aware highlight. */}
+              {headStart} <span className="hero-highlight">{headEnd}</span>
             </h1>
 
             <p className="mt-6 font-display text-xl font-semibold tracking-tight text-blue md:text-2xl">

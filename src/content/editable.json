@@ -1,7 +1,7 @@
 {
-  "theme": "ivory",
+  "theme": "pastel",
   "mode": "light",
-  "themePicker": false,
+  "themePicker": true,
   "resume": "/Venkatesan-G-Resume.pdf",
   "about": {
     "heading": "About me",
