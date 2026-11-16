@@ -147,7 +147,7 @@ export function NameParticles({ text }: { text: string }) {
       color = getComputedStyle(canvas).color || color;
       if (!running) draw();
     });
-    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme", "data-mode"] });
 
     const resizeObserver = new ResizeObserver(() => build());
     resizeObserver.observe(canvas);

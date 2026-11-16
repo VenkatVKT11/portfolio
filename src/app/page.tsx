@@ -5,6 +5,7 @@ import { Nav } from "@/components/Nav";
 import { PointerGlow } from "@/components/PointerGlow";
 import { ThemePicker } from "@/components/ThemePicker";
 import { Projects } from "@/components/Projects";
+import { ScrollCue } from "@/components/ScrollCue";
 import { Tools } from "@/components/Tools";
 import { Work } from "@/components/Workflow";
 import { About, Experience, Results, Skills } from "@/components/Sections";
@@ -75,6 +76,13 @@ export default function Home() {
       <Nav />
       <main id="main">
         <Hero />
+        {/* The scroll ring sits centred on the hero's bottom edge: half shows on the first screen,
+            the rest appears as you scroll. A zero-height row, so it adds no gap. */}
+        <div className="hero-cue no-print relative z-20 flex h-0 items-start justify-center">
+          <div className="-translate-y-1/2">
+            <ScrollCue />
+          </div>
+        </div>
         <Tools />
         <About />
         <Projects />

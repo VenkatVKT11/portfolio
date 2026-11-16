@@ -301,7 +301,7 @@ export function Projects() {
               <Block title="Tools and technologies">
                 <ul className="flex flex-wrap gap-2">
                   {active.tools.map((tool) => (
-                    <li key={tool} className="rounded-full border border-line bg-surface px-3.5 py-1.5 text-[0.9375rem] font-medium">
+                    <li key={tool} className="chip rounded-full px-3.5 py-1.5 text-[0.9375rem] font-medium">
                       {tool}
                     </li>
                   ))}

@@ -2,7 +2,6 @@ import Image from "next/image";
 import { Fragment, type CSSProperties } from "react";
 import { hero, site } from "@/content/site";
 import { NameParticles } from "./NameParticles";
-import { ScrollCue } from "./ScrollCue";
 
 const delay = (ms: number) => ({ "--d": ms }) as CSSProperties;
 
@@ -95,11 +94,6 @@ export function Hero() {
             </p>
 
             <p className="hero-desc mt-5 max-w-[46ch] text-lg text-ink/80 xl:text-xl xl:leading-relaxed">{hero.description}</p>
-
-            {/* The scroll ring sits in the card's empty corner beside the buttons (wide screens only). */}
-            <div className="hero-cue absolute bottom-[clamp(1.25rem,3svh,2.25rem)] right-[clamp(1.25rem,2.4vw,2.5rem)] hidden xl:block">
-              <ScrollCue />
-            </div>
 
             <div className="hero-actions mt-9 flex flex-wrap gap-3">
               <a href={hero.primaryCta.href} className="btn btn-primary max-sm:grow" data-track="cta_click" data-track-label="hero_view_work">

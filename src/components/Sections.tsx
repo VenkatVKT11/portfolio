@@ -78,9 +78,7 @@ export function Skills() {
                 {group.skills.map((skill) => (
                   <li
                     key={skill}
-                    className={`rounded-full border px-3.5 py-1.5 text-[0.9375rem] font-medium ${
-                      group.accent ? "border-blue/25 bg-blue/[0.07] text-blue" : "border-line bg-surface"
-                    }`}
+                    className={`chip rounded-full px-3.5 py-1.5 text-[0.9375rem] font-medium ${group.accent ? "chip-accent" : ""}`}
                   >
                     {skill}
                   </li>
@@ -150,7 +148,7 @@ export function Experience() {
                   <p className="mt-1 font-semibold text-blue">{stop.place}</p>
                   <ul className="mt-3 flex flex-wrap gap-2">
                     {stop.meta.map((item) => (
-                      <li key={item} className="rounded-full border border-line bg-surface px-3 py-1 text-[0.8125rem] font-medium">
+                      <li key={item} className="chip rounded-full px-3 py-1 text-[0.8125rem] font-medium">
                         {item}
                       </li>
                     ))}
@@ -166,7 +164,7 @@ export function Experience() {
             <div className="rounded-[28px] border border-dashed border-ink/25 bg-surface p-6 md:p-8">
               <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.9375rem] font-medium text-mute">
                 {careerTransition.period}
-                <span className="rounded-full border border-line bg-surface px-2.5 py-0.5 text-[0.8125rem] font-semibold text-ink">
+                <span className="chip rounded-full px-2.5 py-0.5 text-[0.8125rem] font-semibold text-ink">
                   {careerTransition.label}
                 </span>
               </p>
@@ -299,7 +297,7 @@ export function Results() {
             <h3 className="text-mute">Campaign themes</h3>
             <ul className="mt-4 flex flex-wrap gap-2.5">
               {metrics.campaignThemes.map((theme) => (
-                <li key={theme} className="rounded-full border border-line bg-surface px-4 py-2 font-medium">
+                <li key={theme} className="chip rounded-full px-4 py-2 font-medium">
                   {theme}
                 </li>
               ))}

@@ -1,7 +1,7 @@
 @import "tailwindcss";
 
-/* Design tokens: deep navy, soft white text, one royal blue.
-   --color-blue is the lighter text/accent blue; buttons use the deeper #2a55ff. */
+/* Design tokens. Utilities read the active theme's variables; every theme is light.
+   --color-blue is the theme's readable accent text colour. */
 @theme {
   --color-ink: var(--ink);
   --color-mute: var(--mute);
@@ -13,72 +13,28 @@
 /* ---------- Themes ----------
    Every accent on the site reads these. --*-rgb values are "r g b" triplets for rgb(var(--x) / alpha).
    Pick the default in site.ts (theme); the preview picker sets data-theme on <html>. */
-:root,
-[data-theme="midnight"] {
-  --bg: #070b18;
-  --bg-rgb: 7 11 24;
-  --raise: #0b1022;
-  --ink: #eef1f8;
-  --mute: #9aa3b8;
-  --acc: #2a55ff;
-  --acc-rgb: 42 85 255;
-  --acc-a: #3d68ff;
-  --acc-b: #1d43f0;
-  --acc-hover: #4d76ff;
-  --acc-hi-rgb: 134 160 255;
-  --acc-text: #86a0ff;
-  --acc2-rgb: 124 92 255;
+/* Fallback tokens (Classic Light). Every theme below overrides them. */
+:root {
+  --bg: #ffffff;
+  --bg-rgb: 255 255 255;
+  --raise: #ffffff;
+  --card: #ffffff;
+  --soft: #f3f6fc;
+  --ink: #171717;
+  --mute: #666b73;
+  --acc: #1447ff;
+  --acc-rgb: 20 71 255;
+  --acc-a: #2a55ff;
+  --acc-b: #0b36d6;
+  --acc-hover: #3d68ff;
+  --acc-hi-rgb: 20 71 255;
+  --acc-text: #1447ff;
+  --acc2-rgb: 111 139 255;
   --on-acc: #ffffff;
-  --surface: rgb(255 255 255 / 0.045);
-  --line: rgb(255 255 255 / 0.1);
-}
-[data-theme="aurora"] {
-  --bg: #04110f;
-  --bg-rgb: 4 17 15;
-  --raise: #08201c;
-  --ink: #ecf6f3;
-  --mute: #93aba6;
-  --acc: #14b8a6;
-  --acc-rgb: 20 184 166;
-  --acc-a: #2dd4bf;
-  --acc-b: #0d9488;
-  --acc-hover: #5eead4;
-  --acc-hi-rgb: 94 234 212;
-  --acc-text: #5eead4;
-  --acc2-rgb: 56 189 248;
-  --on-acc: #03201b;
-}
-[data-theme="violet"] {
-  --bg: #0c0817;
-  --bg-rgb: 12 8 23;
-  --raise: #150f26;
-  --ink: #f2eefb;
-  --mute: #a69fbc;
-  --acc: #7c5cff;
-  --acc-rgb: 124 92 255;
-  --acc-a: #9277ff;
-  --acc-b: #6a45f5;
-  --acc-hover: #a58fff;
-  --acc-hi-rgb: 180 163 255;
-  --acc-text: #b8a8ff;
-  --acc2-rgb: 255 92 154;
-  --on-acc: #ffffff;
-}
-[data-theme="gold"] {
-  --bg: #0c0c0e;
-  --bg-rgb: 12 12 14;
-  --raise: #161618;
-  --ink: #f3f0ea;
-  --mute: #a9a397;
-  --acc: #d4a24c;
-  --acc-rgb: 212 162 76;
-  --acc-a: #e8b964;
-  --acc-b: #bf8a33;
-  --acc-hover: #f2c879;
-  --acc-hi-rgb: 232 194 122;
-  --acc-text: #e6c07c;
-  --acc2-rgb: 196 120 80;
-  --on-acc: #1b1406;
+  --surface: #f5f6f8;
+  --line: rgb(196 202 214 / 0.6);
+  --line-strong: rgb(196 202 214 / 0.9);
+  --shadow-rgb: 60 70 90;
 }
 @theme inline {
   --font-sans: var(--font-body), system-ui, -apple-system, sans-serif;
@@ -91,7 +47,7 @@ html {
 }
 
 html {
-  color-scheme: dark;
+  color-scheme: light;
   background: var(--bg);
 }
 
@@ -238,13 +194,6 @@ body {
   .hero-actions {
     margin-top: 1.5rem;
   }
-  .hero-cue {
-    margin-top: 1rem;
-  }
-  .hero-cue .scroll-cue {
-    width: 88px;
-    height: 88px;
-  }
 }
 .hero-title {
   font-family: var(--font-display);
@@ -293,8 +242,14 @@ body {
     0 22px 44px -18px rgb(var(--acc-rgb) / 0.85);
 }
 .hero-cue .scroll-cue {
-  width: 96px;
-  height: 96px;
+  width: 88px;
+  height: 88px;
+}
+@media (min-width: 768px) {
+  .hero-cue .scroll-cue {
+    width: 104px;
+    height: 104px;
+  }
 }
 .scroll-cue-ring {
   position: absolute;
@@ -968,13 +923,90 @@ dialog.is-closing::backdrop {
 }
 
 /* =====================================================================
-   Classic Light: the original white-and-blue design, kept as a theme.
-   The dark themes are the base above; this block only overrides them.
+   Extra themes. The dark base above is "midnight"; every theme below only
+   swaps tokens, and the light ones share one set of light surface rules.
    ===================================================================== */
+
+/* ---------- Palette themes (all light) ---------- */
+
+/* Noir Gold: Pure White #F5F3EF, Midnight Black #080908, Vibrant Golden Yellow #FFC900 */
+[data-theme="noir"] {
+  --bg: #f5f3ef;
+  --bg-rgb: 245 243 239;
+  --raise: #fbfaf7;
+  --card: #fbfaf7;
+  --soft: #ece9e2;
+  --ink: #080908;
+  --mute: #6b6862;
+  --acc: #ffc900;
+  --acc-rgb: 255 201 0;
+  --acc-a: #ffc900;
+  --acc-b: #ffbf00;
+  --acc-hover: #ffd633;
+  --acc-hi-rgb: 8 9 8;
+  --acc-text: #080908; /* gold is unreadable as text on white; text stays black with gold accents */
+  --acc2-rgb: 255 201 0;
+  --on-acc: #080908;
+  --surface: #ece9e2;
+  --line: rgb(8 9 8 / 0.12);
+  --line-strong: rgb(8 9 8 / 0.3);
+  --shadow-rgb: 40 36 20;
+}
+/* Obsidian Crimson: Chrome Silver #CDCBCA, Obsidian Black #080808, Laser Crimson Red #D41514 */
+[data-theme="crimson"] {
+  --bg: #f5f4f3;
+  --bg-rgb: 245 244 243;
+  --raise: #fbfafa;
+  --card: #fbfafa;
+  --soft: #e7e5e4;
+  --ink: #080808;
+  --mute: #6f6d6c;
+  --acc: #d41514;
+  --acc-rgb: 212 21 20;
+  --acc-a: #e0201d;
+  --acc-b: #d41514;
+  --acc-hover: #ea2f2b;
+  --acc-hi-rgb: 212 21 20;
+  --acc-text: #d41514;
+  --acc2-rgb: 205 203 202;
+  --on-acc: #ffffff;
+  --surface: #e7e5e4;
+  --line: rgb(8 8 8 / 0.12);
+  --line-strong: #cdcbca;
+  --shadow-rgb: 30 28 28;
+}
+/* Charcoal Coral: Cool Steel Grey #929DA7, Midnight Charcoal #17191C, Vibrant Coral Orange #FF4B32 */
+[data-theme="coral"] {
+  --bg: #eef0f2;
+  --bg-rgb: 238 240 242;
+  --raise: #f8f9fa;
+  --card: #f8f9fa;
+  --soft: #e2e6ea;
+  --ink: #17191c;
+  --mute: #5d6670;
+  --acc: #ff4b32;
+  --acc-rgb: 255 75 50;
+  --acc-a: #ff5e47;
+  --acc-b: #ff4b32;
+  --acc-hover: #ff7360;
+  --acc-hi-rgb: 191 52 31;
+  --acc-text: #bf341f; /* deeper coral: #FF4B32 is too light for small text here */
+  --acc2-rgb: 146 157 167;
+  --on-acc: #17191c;
+  --surface: #e2e6ea;
+  --line: rgb(23 25 28 / 0.12);
+  --line-strong: rgb(146 157 167 / 0.8);
+  --shadow-rgb: 40 46 54;
+}
+
+/* ---------- Light themes ---------- */
+
 [data-theme="light"] {
   --bg: #ffffff;
   --bg-rgb: 255 255 255;
   --raise: #ffffff;
+  --card: #ffffff;
+  --soft: #f3f6fc;
   --ink: #171717;
   --mute: #666b73;
   --acc: #1447ff;
@@ -988,144 +1020,681 @@ dialog.is-closing::backdrop {
   --on-acc: #ffffff;
   --surface: #f5f6f8;
   --line: rgb(196 202 214 / 0.6);
+  --line-strong: rgb(196 202 214 / 0.9);
+  --shadow-rgb: 60 70 90;
+}
+/* Powder Pastel: Powder Blue #8DB9F0, Soft Lavender White #E9E8F8, Warm Sunset Peach #F5B69E */
+[data-theme="pastel"] {
+  --bg: #e9e8f8;
+  --bg-rgb: 233 232 248;
+  --raise: #f6f5fd;
+  --card: #f7f6fd;
+  --soft: #e1e0f4;
+  --ink: #1f2440; /* deep indigo text: the palette has no dark colour */
+  --mute: #5b6080;
+  --acc: #8db9f0;
+  --acc-rgb: 141 185 240;
+  --acc-a: #8db9f0;
+  --acc-b: #a9c9f3;
+  --acc-hover: #9fc5f3;
+  --acc-hi-rgb: 47 95 168;
+  --acc-text: #2f5fa8; /* darker powder blue, readable on lavender */
+  --acc2-rgb: 245 182 158;
+  --on-acc: #1f2440;
+  --surface: rgb(255 255 255 / 0.55);
+  --line: rgb(31 36 64 / 0.12);
+  --line-strong: rgb(31 36 64 / 0.22);
+  --shadow-rgb: 70 72 130;
+}
+/* Ivory Neon: Soft Ivory #FAF8F3, Midnight Black #080908, Neon Lime Green #CDF22B */
+[data-theme="ivory"] {
+  --bg: #faf8f3;
+  --bg-rgb: 250 248 243;
+  --raise: #ffffff;
+  --card: #ffffff;
+  --soft: #f2efe6;
+  --ink: #080908;
+  --mute: #5e5d57;
+  --acc: #cdf22b;
+  --acc-rgb: 205 242 43;
+  --acc-a: #cdf22b;
+  --acc-b: #c2e81f;
+  --acc-hover: #d8f75a;
+  --acc-hi-rgb: 8 9 8;
+  --acc-text: #080908; /* lime is unreadable as text on ivory; links stay black and get a lime underline */
+  --acc2-rgb: 205 242 43;
+  --on-acc: #080908;
+  --surface: #f2efe6;
+  --line: rgb(8 9 8 / 0.12);
+  --line-strong: rgb(8 9 8 / 0.3);
+  --shadow-rgb: 40 38 30;
+}
+
+/* Light mode surfaces. They override the dark base rules above; dark mode keeps those. */
+[data-mode="light"] {
   color-scheme: light;
 }
-[data-theme="light"] body {
+[data-mode="light"] body {
+  background:
+    radial-gradient(70rem 50rem at 100% 20%, rgb(var(--acc-rgb) / 0.12), transparent 60%),
+    radial-gradient(60rem 50rem at 0% 75%, rgb(var(--acc2-rgb) / 0.14), transparent 60%),
+    var(--bg);
+}
+[data-theme="light"][data-mode="light"] body {
   background: #ffffff;
 }
-[data-theme="light"] .glass {
-  background: rgb(255 255 255 / 0.64);
-  border: 1px solid rgb(255 255 255 / 0.95);
+[data-mode="light"] .glass {
+  background: rgb(255 255 255 / 0.6);
+  border: 1px solid rgb(255 255 255 / 0.9);
   box-shadow:
-    0 0 0 1px rgb(196 202 214 / 0.45),
-    0 24px 50px -30px rgb(60 70 90 / 0.35),
+    0 0 0 1px var(--line),
+    0 24px 50px -30px rgb(var(--shadow-rgb) / 0.35),
     inset 0 1px 0 rgb(255 255 255 / 0.95);
 }
-[data-theme="light"] .card {
-  background: #ffffff;
-  border: 1px solid rgb(196 202 214 / 0.6);
-  box-shadow: 0 18px 40px -30px rgb(60 70 90 / 0.3);
+[data-mode="light"] .card {
+  background: var(--card);
+  border: 1px solid var(--line);
+  box-shadow: 0 18px 40px -30px rgb(var(--shadow-rgb) / 0.3);
 }
-[data-theme="light"] .card-hover:hover {
-  border-color: rgb(20 71 255 / 0.35);
-  box-shadow: 0 30px 60px -34px rgb(20 71 255 / 0.4);
+[data-mode="light"] .card-hover:hover {
+  border-color: rgb(var(--acc-rgb) / 0.6);
+  box-shadow: 0 30px 60px -34px rgb(var(--shadow-rgb) / 0.45);
 }
-[data-theme="light"] .glow-blue {
+[data-mode="light"] .glow-blue {
+  background: rgb(var(--acc-rgb) / 0.3);
+}
+[data-mode="light"] .glow-silver {
+  background: rgb(var(--acc2-rgb) / 0.32);
+}
+[data-theme="light"][data-mode="light"] .glow-blue {
   background: rgb(20 71 255 / 0.2);
 }
-[data-theme="light"] .glow-silver {
+[data-theme="light"][data-mode="light"] .glow-silver {
   background: rgb(190 198 212 / 0.75);
 }
-[data-theme="light"] .band-dark {
-  background: #ffffff;
+[data-mode="light"] .band-dark {
+  background: transparent;
 }
-[data-theme="light"] .band-dark::before {
+[data-mode="light"] .band-dark::before {
   display: none;
 }
-[data-theme="light"] .band-soft {
-  background: #f3f6fc;
+[data-mode="light"] .band-soft {
+  background: var(--soft);
 }
-[data-theme="light"] .nav-bar {
+[data-mode="light"] .nav-bar {
   background: rgb(255 255 255 / 0.72) !important;
   border-color: rgb(255 255 255 / 0.95) !important;
   box-shadow:
-    0 0 0 1px rgb(196 202 214 / 0.45),
-    0 24px 50px -30px rgb(60 70 90 / 0.35),
+    0 0 0 1px var(--line),
+    0 24px 50px -30px rgb(var(--shadow-rgb) / 0.35),
     inset 0 1px 0 rgb(255 255 255 / 0.95) !important;
 }
-[data-theme="light"] .nav-active {
+[data-mode="light"] .nav-active {
   background: #ffffff;
-  color: var(--acc);
-  box-shadow: 0 0 0 1px rgb(196 202 214 / 0.6);
+  color: var(--acc-text);
+  box-shadow: 0 0 0 1px var(--line-strong);
 }
-[data-theme="light"] .btn-quiet {
-  color: #171717;
+[data-mode="light"] .btn-quiet {
+  color: var(--ink);
   background: rgb(255 255 255 / 0.7);
-  box-shadow: inset 0 0 0 1px rgb(196 202 214 / 0.9);
+  box-shadow: inset 0 0 0 1px var(--line-strong);
 }
-[data-theme="light"] .btn-quiet:hover {
-  background: rgb(255 255 255 / 0.9);
-  box-shadow: inset 0 0 0 1px #171717;
+[data-mode="light"] .btn-quiet:hover {
+  background: rgb(255 255 255 / 0.95);
+  box-shadow: inset 0 0 0 1px var(--ink);
 }
-[data-theme="light"] .btn-outline {
-  color: #1447ff;
+[data-mode="light"] .btn-outline {
+  color: var(--acc-text);
+  background: rgb(255 255 255 / 0.85);
+  box-shadow:
+    inset 0 0 0 1.5px var(--acc-text),
+    0 12px 26px -18px rgb(var(--shadow-rgb) / 0.5);
+}
+[data-mode="light"] .btn-outline:hover {
   background: #ffffff;
   box-shadow:
-    inset 0 0 0 1.5px #1447ff,
-    0 12px 26px -18px rgb(20 71 255 / 0.5);
+    inset 0 0 0 1.5px var(--acc-text),
+    0 16px 30px -16px rgb(var(--shadow-rgb) / 0.6);
 }
-[data-theme="light"] .btn-outline:hover {
-  background: #eef3ff;
+[data-mode="light"] .btn-primary {
   box-shadow:
-    inset 0 0 0 1.5px #1447ff,
-    0 16px 30px -16px rgb(20 71 255 / 0.65);
+    inset 0 1px 0 rgb(255 255 255 / 0.35),
+    0 14px 30px -14px rgb(var(--acc-rgb) / 0.9);
 }
-[data-theme="light"] .btn-primary {
-  box-shadow: 0 14px 30px -14px rgb(20 71 255 / 0.7);
-}
-[data-theme="light"] .scroll-cue {
+[data-mode="light"] .scroll-cue {
   background: rgb(255 255 255 / 0.82);
-  color: #171717;
+  color: var(--ink);
   box-shadow:
-    0 0 0 1px rgb(196 202 214 / 0.6),
-    0 18px 40px -22px rgb(20 71 255 / 0.45);
+    0 0 0 1px var(--line-strong),
+    0 18px 40px -22px rgb(var(--shadow-rgb) / 0.45);
 }
-[data-theme="light"] .tool-chip {
+[data-mode="light"] .scroll-cue-arrow {
+  color: var(--acc-text);
+}
+[data-mode="light"] .tool-chip {
   background: rgb(255 255 255 / 0.72);
   border-color: rgb(255 255 255 / 0.9);
-  box-shadow: 0 0 0 1px rgb(196 202 214 / 0.4);
+  box-shadow: 0 0 0 1px var(--line);
 }
-[data-theme="light"] .tool-chip:hover {
+[data-mode="light"] .tool-chip:hover {
   background: #ffffff;
   box-shadow:
-    0 0 0 1px rgb(20 71 255 / 0.45),
-    0 14px 26px -18px rgb(20 71 255 / 0.6);
+    0 0 0 1px rgb(var(--acc-rgb) / 0.6),
+    0 14px 26px -18px rgb(var(--shadow-rgb) / 0.6);
 }
-[data-theme="light"] .logo-tile {
-  box-shadow: 0 0 0 1px rgb(196 202 214 / 0.5);
+[data-mode="light"] .logo-tile {
+  box-shadow: 0 0 0 1px var(--line);
 }
-[data-theme="light"] .node {
+[data-mode="light"] .node {
   animation-name: lit-light;
 }
-[data-theme="light"] .node-icon {
-  background: #f5f6f8;
-  color: #171717;
+[data-mode="light"] .node-icon {
+  background: var(--surface);
+  color: var(--ink);
   animation-name: lit-icon-light;
 }
 @keyframes lit-light {
   0%,
   14% {
-    border-color: rgb(20 71 255 / 0.55);
+    border-color: rgb(var(--acc-rgb) / 0.7);
     box-shadow:
-      0 0 0 4px rgb(20 71 255 / 0.1),
-      0 24px 50px -28px rgb(20 71 255 / 0.55),
+      0 0 0 4px rgb(var(--acc-rgb) / 0.18),
+      0 24px 50px -28px rgb(var(--shadow-rgb) / 0.55),
       inset 0 1px 0 rgb(255 255 255 / 0.95);
   }
   19%,
   100% {
-    border-color: rgb(255 255 255 / 0.95);
+    border-color: rgb(255 255 255 / 0.9);
     box-shadow:
-      0 0 0 1px rgb(196 202 214 / 0.45),
-      0 24px 50px -30px rgb(60 70 90 / 0.35),
+      0 0 0 1px var(--line),
+      0 24px 50px -30px rgb(var(--shadow-rgb) / 0.35),
       inset 0 1px 0 rgb(255 255 255 / 0.95);
   }
 }
 @keyframes lit-icon-light {
   0%,
   14% {
-    background: #1447ff;
-    color: #ffffff;
+    background: var(--acc);
+    color: var(--on-acc);
   }
   19%,
   100% {
-    background: #f5f6f8;
-    color: #171717;
+    background: var(--surface);
+    color: var(--ink);
   }
 }
-[data-theme="light"] .img-soft,
-[data-theme="light"] .group:hover .img-soft {
+[data-mode="light"] .img-soft,
+[data-mode="light"] .group:hover .img-soft {
   filter: none;
 }
-[data-theme="light"] .spotlight::after {
-  background: radial-gradient(440px circle at var(--mx, 50%) var(--my, 50%), rgb(20 71 255 / 0.1), transparent 62%);
+[data-mode="light"] .spotlight::after {
+  background: radial-gradient(440px circle at var(--mx, 50%) var(--my, 50%), rgb(var(--acc-rgb) / 0.16), transparent 62%);
+}
+
+/* ---------- Signature effects, one per palette theme ---------- */
+
+/* Ivory: black-and-lime nav pill. */
+[data-theme="ivory"][data-mode="light"] .nav-active {
+  background: #080908;
+  color: #cdf22b;
+  box-shadow: none;
+}
+[data-theme="ivory"] .scroll-progress {
+  background: #080908;
+}
+/* Pastel: blue-to-peach reading progress bar. */
+[data-theme="pastel"] .scroll-progress {
+  background: linear-gradient(90deg, #8db9f0, #f5b69e);
+}
+
+/* Noir Gold: black-and-gold nav pill; buttons are in Glass buttons below. */
+[data-theme="noir"][data-mode="light"] .nav-active {
+  background: #080908;
+  color: #ffc900;
+  box-shadow: none;
+}
+[data-theme="noir"] .scroll-progress {
+  background: #ffc900;
+}
+
+/* Obsidian Crimson: chrome silver borders. */
+[data-theme="crimson"][data-mode="light"] .card,
+[data-theme="crimson"][data-mode="light"] .glass {
+  border-color: #cdcbca;
+}
+[data-theme="crimson"] .scroll-progress {
+  background: #d41514;
+}
+
+/* Charcoal Coral: coral-to-steel progress bar. */
+[data-theme="coral"] .scroll-progress {
+  background: linear-gradient(90deg, #ff4b32, #929da7);
+}
+
+
+/* =====================================================================
+   Glass everywhere: buttons, chips and cards.
+   Every button is frosted glass with a top gloss and a light that sweeps
+   across on hover. Placed last so it wins over the earlier button rules.
+   ===================================================================== */
+.btn {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  -webkit-backdrop-filter: blur(14px) saturate(170%);
+  backdrop-filter: blur(14px) saturate(170%);
+  transition:
+    background-color 0.3s,
+    color 0.3s,
+    box-shadow 0.3s,
+    transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+/* Top gloss: a soft white sheen on the upper half, under the label. */
+.btn::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: inherit;
+  background: linear-gradient(180deg, rgb(255 255 255 / 0.55) 0%, rgb(255 255 255 / 0.12) 48%, transparent 52%);
+  opacity: 0.75;
+  pointer-events: none;
+}
+/* Light sweep on hover. */
+.btn::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  border-radius: inherit;
+  background: linear-gradient(115deg, transparent 30%, rgb(255 255 255 / 0.6) 48%, transparent 64%);
+  transform: translateX(-130%);
+  transition: transform 0.8s cubic-bezier(0.2, 0.8, 0.2, 1);
+  pointer-events: none;
+}
+.btn:hover {
+  transform: translateY(-1px);
+}
+.btn:hover::after {
+  transform: translateX(130%);
+}
+.btn:active {
+  transform: translateY(0) scale(0.98);
+}
+
+/* Primary: tinted accent glass. */
+:root .btn-primary {
+  background: linear-gradient(135deg, rgb(var(--acc-rgb) / 0.92), rgb(var(--acc-rgb) / 0.74));
+  color: var(--on-acc);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.65),
+    inset 0 -1px 0 rgb(0 0 0 / 0.08),
+    0 0 0 1px rgb(var(--acc-rgb) / 0.45),
+    0 14px 32px -14px rgb(var(--acc-rgb) / 0.85);
+}
+:root .btn-primary:hover {
+  background: linear-gradient(135deg, rgb(var(--acc-rgb) / 1), rgb(var(--acc-rgb) / 0.82));
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.75),
+    inset 0 -1px 0 rgb(0 0 0 / 0.08),
+    0 0 0 1px rgb(var(--acc-rgb) / 0.6),
+    0 20px 40px -14px rgb(var(--acc-rgb) / 0.95);
+}
+
+/* Quiet and outline: frosted white glass. */
+[data-mode="light"] .btn-quiet,
+[data-mode="light"] .btn-outline {
+  background: linear-gradient(160deg, rgb(255 255 255 / 0.7), rgb(255 255 255 / 0.38));
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.95),
+    inset 0 0 0 1px var(--line-strong),
+    0 10px 26px -18px rgb(var(--shadow-rgb) / 0.55);
+}
+[data-mode="light"] .btn-quiet {
+  color: var(--ink);
+}
+[data-mode="light"] .btn-outline {
+  color: var(--acc-text);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.95),
+    inset 0 0 0 1.5px rgb(var(--acc-rgb) / 0.55),
+    0 10px 26px -18px rgb(var(--acc-rgb) / 0.6);
+}
+[data-mode="light"] .btn-quiet:hover,
+[data-mode="light"] .btn-outline:hover {
+  background: linear-gradient(160deg, rgb(255 255 255 / 0.92), rgb(255 255 255 / 0.6));
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 1),
+    inset 0 0 0 1.5px rgb(var(--acc-rgb) / 0.7),
+    0 16px 32px -16px rgb(var(--acc-rgb) / 0.55);
+}
+
+/* Theme twists on the glass primary button. */
+[data-theme="noir"][data-mode="light"] .btn-primary,
+[data-theme="noir"][data-mode="light"] .btn-primary:hover {
+  background: linear-gradient(135deg, rgb(8 9 8 / 0.92), rgb(8 9 8 / 0.78));
+  color: #ffc900;
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.25),
+    0 0 0 1px rgb(255 201 0 / 0.55),
+    0 14px 32px -12px rgb(255 201 0 / 0.75);
+}
+[data-theme="noir"][data-mode="light"] .btn-primary::before {
+  opacity: 0.35;
+}
+[data-theme="ivory"][data-mode="light"] .btn-primary,
+[data-theme="ivory"][data-mode="light"] .btn-primary:hover {
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.7),
+    0 0 0 1.5px #080908,
+    0 14px 32px -12px rgb(205 242 43 / 0.95);
+}
+[data-theme="ivory"][data-mode="light"] .btn-outline,
+[data-theme="ivory"][data-mode="light"] .btn-quiet {
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.95),
+    inset 0 0 0 1.5px #080908,
+    0 10px 26px -18px rgb(8 9 8 / 0.5);
+}
+[data-theme="crimson"][data-mode="light"] .btn-primary {
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.5),
+    0 0 0 1px rgb(212 21 20 / 0.6),
+    0 14px 34px -12px rgb(212 21 20 / 0.75);
+}
+[data-theme="crimson"][data-mode="light"] .btn-quiet,
+[data-theme="crimson"][data-mode="light"] .btn-outline {
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.95),
+    inset 0 0 0 1.5px #cdcbca,
+    0 10px 26px -18px rgb(30 28 28 / 0.5);
+}
+
+/* Glass chips: skills, tools, tags and other pills. */
+[data-mode="light"] .chip {
+  background: linear-gradient(160deg, rgb(255 255 255 / 0.72), rgb(255 255 255 / 0.4));
+  -webkit-backdrop-filter: blur(10px) saturate(160%);
+  backdrop-filter: blur(10px) saturate(160%);
+  border: 1px solid rgb(255 255 255 / 0.85);
+  box-shadow:
+    0 0 0 1px var(--line),
+    inset 0 1px 0 rgb(255 255 255 / 0.9),
+    0 6px 16px -12px rgb(var(--shadow-rgb) / 0.5);
+  transition:
+    transform 0.25s,
+    box-shadow 0.25s;
+}
+[data-mode="light"] .chip:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 0 0 1px rgb(var(--acc-rgb) / 0.45),
+    inset 0 1px 0 rgb(255 255 255 / 1),
+    0 10px 20px -12px rgb(var(--acc-rgb) / 0.55);
+}
+.chip-accent {
+  background: linear-gradient(160deg, rgb(var(--acc-rgb) / 0.22), rgb(var(--acc-rgb) / 0.1));
+  color: var(--acc-text);
+}
+
+/* Tool chips in the marquee get the same glass. */
+[data-mode="light"] .tool-chip {
+  background: linear-gradient(160deg, rgb(255 255 255 / 0.75), rgb(255 255 255 / 0.42));
+  -webkit-backdrop-filter: blur(10px) saturate(160%);
+  backdrop-filter: blur(10px) saturate(160%);
+  border-color: rgb(255 255 255 / 0.85);
+  box-shadow:
+    0 0 0 1px var(--line),
+    inset 0 1px 0 rgb(255 255 255 / 0.95),
+    0 8px 18px -14px rgb(var(--shadow-rgb) / 0.5);
+}
+
+/* Glass cards: plain cards become frosted glass too. */
+[data-mode="light"] .card {
+  background: linear-gradient(165deg, rgb(255 255 255 / 0.78), rgb(255 255 255 / 0.5));
+  -webkit-backdrop-filter: blur(18px) saturate(160%);
+  backdrop-filter: blur(18px) saturate(160%);
+  border: 1px solid rgb(255 255 255 / 0.9);
+  box-shadow:
+    0 0 0 1px var(--line),
+    inset 0 1px 0 rgb(255 255 255 / 0.95),
+    0 20px 44px -30px rgb(var(--shadow-rgb) / 0.35);
+}
+[data-theme="crimson"][data-mode="light"] .card {
+  border-color: #cdcbca;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn::after {
+    display: none;
+  }
+  .btn:hover,
+  .chip:hover {
+    transform: none;
+  }
+}
+
+/* =====================================================================
+   Headline highlighter. "Measurable Growth." always sits on the same
+   one-colour highlighter bar in every theme; only the colour changes (--marker).
+   ===================================================================== */
+:root {
+  --marker: rgb(20 71 255 / 0.3);
+}
+[data-theme="pastel"] {
+  --marker: #8db9f0;
+}
+[data-theme="noir"] {
+  --marker: #ffc900;
+}
+[data-theme="ivory"] {
+  --marker: #cdf22b;
+}
+[data-theme="crimson"] {
+  --marker: rgb(212 21 20 / 0.4);
+}
+[data-theme="coral"] {
+  --marker: rgb(255 75 50 / 0.5);
+}
+/* Dark mode: the same colours, a little softer behind light text. */
+[data-mode="dark"] {
+  --marker: rgb(var(--acc-rgb) / 0.42);
+}
+:root .text-gradient {
+  color: var(--ink);
+  background: linear-gradient(var(--marker), var(--marker));
+  -webkit-background-clip: border-box;
+  background-clip: border-box;
+  background-repeat: no-repeat;
+  background-size: 100% 0.42em;
+  background-position: 0 90%;
+  padding: 0 0.08em;
+  margin: 0 -0.08em;
+  border-radius: 0.1em;
+  filter: none;
+  animation: none;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+}
+
+/* =====================================================================
+   Dark mode. Every palette has a dark version (data-mode="dark").
+   The dark base rules near the top of this file style the surfaces;
+   these blocks only set each palette's dark colours.
+   ===================================================================== */
+[data-mode="dark"] {
+  color-scheme: dark;
+  --card: rgb(255 255 255 / 0.05);
+  --soft: rgb(255 255 255 / 0.03);
+  --line-strong: rgb(255 255 255 / 0.24);
+  --shadow-rgb: 0 0 0;
+}
+/* Classic Light -> Midnight Blue */
+[data-theme="light"][data-mode="dark"] {
+  --bg: #070b18;
+  --bg-rgb: 7 11 24;
+  --raise: #0b1022;
+  --ink: #eef1f8;
+  --mute: #9aa3b8;
+  --acc: #2a55ff;
+  --acc-rgb: 42 85 255;
+  --acc-a: #3d68ff;
+  --acc-b: #1d43f0;
+  --acc-hover: #4d76ff;
+  --acc-hi-rgb: 134 160 255;
+  --acc-text: #86a0ff;
+  --acc2-rgb: 124 92 255;
+  --on-acc: #ffffff;
+  --surface: rgb(255 255 255 / 0.045);
+  --line: rgb(255 255 255 / 0.1);
+}
+/* Powder Pastel, dark: deep indigo with powder blue and peach. */
+[data-theme="pastel"][data-mode="dark"] {
+  --bg: #11131f;
+  --bg-rgb: 17 19 31;
+  --raise: #181a2b;
+  --ink: #e9e8f8;
+  --mute: #9c9eba;
+  --acc: #8db9f0;
+  --acc-rgb: 141 185 240;
+  --acc-a: #8db9f0;
+  --acc-b: #a9c9f3;
+  --acc-hover: #a9c9f3;
+  --acc-hi-rgb: 141 185 240;
+  --acc-text: #8db9f0;
+  --acc2-rgb: 245 182 158;
+  --on-acc: #11131f;
+  --surface: rgb(233 232 248 / 0.05);
+  --line: rgb(233 232 248 / 0.11);
+}
+/* Noir Gold, dark: midnight black, pure white text, golden yellow. */
+[data-theme="noir"][data-mode="dark"] {
+  --bg: #080908;
+  --bg-rgb: 8 9 8;
+  --raise: #121311;
+  --ink: #f5f3ef;
+  --mute: #a8a59f;
+  --acc: #ffc900;
+  --acc-rgb: 255 201 0;
+  --acc-a: #ffc900;
+  --acc-b: #ffb800;
+  --acc-hover: #ffd633;
+  --acc-hi-rgb: 255 201 0;
+  --acc-text: #ffc900;
+  --acc2-rgb: 245 243 239;
+  --on-acc: #080908;
+  --surface: rgb(245 243 239 / 0.05);
+  --line: rgb(245 243 239 / 0.11);
+}
+/* Ivory Neon, dark: midnight black, soft ivory text, neon lime. */
+[data-theme="ivory"][data-mode="dark"] {
+  --bg: #080908;
+  --bg-rgb: 8 9 8;
+  --raise: #121311;
+  --ink: #faf8f3;
+  --mute: #a3a19a;
+  --acc: #cdf22b;
+  --acc-rgb: 205 242 43;
+  --acc-a: #cdf22b;
+  --acc-b: #c2e81f;
+  --acc-hover: #d8f75a;
+  --acc-hi-rgb: 205 242 43;
+  --acc-text: #cdf22b;
+  --acc2-rgb: 250 248 243;
+  --on-acc: #080908;
+  --surface: rgb(250 248 243 / 0.05);
+  --line: rgb(250 248 243 / 0.11);
+}
+/* Obsidian Crimson, dark: obsidian black, chrome silver text, laser red. */
+[data-theme="crimson"][data-mode="dark"] {
+  --bg: #080808;
+  --bg-rgb: 8 8 8;
+  --raise: #131212;
+  --ink: #cdcbca;
+  --mute: #8f8d8c;
+  --acc: #d41514;
+  --acc-rgb: 212 21 20;
+  --acc-a: #e8231f;
+  --acc-b: #d41514;
+  --acc-hover: #f0322d;
+  --acc-hi-rgb: 255 74 71;
+  --acc-text: #ff4a47; /* lighter crimson: #D41514 is too dim for small text on black */
+  --acc2-rgb: 205 203 202;
+  --on-acc: #ffffff;
+  --surface: rgb(205 203 202 / 0.05);
+  --line: rgb(205 203 202 / 0.12);
+}
+/* Charcoal Coral, dark: midnight charcoal, steel grey, coral orange. */
+[data-theme="coral"][data-mode="dark"] {
+  --bg: #17191c;
+  --bg-rgb: 23 25 28;
+  --raise: #1f2226;
+  --ink: #f1f3f5;
+  --mute: #929da7;
+  --acc: #ff4b32;
+  --acc-rgb: 255 75 50;
+  --acc-a: #ff5e47;
+  --acc-b: #ff4b32;
+  --acc-hover: #ff7360;
+  --acc-hi-rgb: 255 120 100;
+  --acc-text: #ff4b32;
+  --acc2-rgb: 146 157 167;
+  --on-acc: #17191c;
+  --surface: rgb(146 157 167 / 0.07);
+  --line: rgb(146 157 167 / 0.16);
+}
+
+/* Dark glass for quiet buttons, chips and the tool marquee. */
+[data-mode="dark"] .btn-quiet,
+[data-mode="dark"] .btn-outline {
+  color: var(--ink);
+  background: linear-gradient(160deg, rgb(255 255 255 / 0.1), rgb(255 255 255 / 0.03));
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.14),
+    inset 0 0 0 1.5px rgb(255 255 255 / 0.2),
+    0 12px 28px -18px rgb(0 0 0 / 0.8);
+}
+[data-mode="dark"] .btn-outline {
+  color: var(--acc-text);
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.14),
+    inset 0 0 0 1.5px rgb(var(--acc-rgb) / 0.55),
+    0 12px 28px -18px rgb(var(--acc-rgb) / 0.5);
+}
+[data-mode="dark"] .btn-quiet:hover,
+[data-mode="dark"] .btn-outline:hover {
+  background: linear-gradient(160deg, rgb(255 255 255 / 0.16), rgb(255 255 255 / 0.06));
+  box-shadow:
+    inset 0 1px 0 rgb(255 255 255 / 0.2),
+    inset 0 0 0 1.5px rgb(var(--acc-rgb) / 0.75),
+    0 16px 34px -16px rgb(var(--acc-rgb) / 0.6);
+}
+[data-mode="dark"] .btn::before {
+  opacity: 0.35;
+}
+[data-mode="dark"] .chip {
+  background: linear-gradient(160deg, rgb(255 255 255 / 0.09), rgb(255 255 255 / 0.03));
+  -webkit-backdrop-filter: blur(10px) saturate(160%);
+  backdrop-filter: blur(10px) saturate(160%);
+  border: 1px solid rgb(255 255 255 / 0.1);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 0.1);
+  transition:
+    transform 0.25s,
+    box-shadow 0.25s;
+}
+[data-mode="dark"] .chip:hover {
+  transform: translateY(-1px);
+  box-shadow:
+    0 0 0 1px rgb(var(--acc-rgb) / 0.45),
+    inset 0 1px 0 rgb(255 255 255 / 0.14);
+}
+[data-mode="dark"] .chip-accent {
+  background: linear-gradient(160deg, rgb(var(--acc-rgb) / 0.22), rgb(var(--acc-rgb) / 0.08));
+}
+[data-mode="dark"] .nav-active {
+  background: rgb(255 255 255 / 0.12);
+  color: #ffffff;
+  box-shadow: 0 0 0 1px rgb(255 255 255 / 0.18);
+}
+[data-theme="ivory"][data-mode="dark"] .scroll-progress {
+  background: #cdf22b;
 }

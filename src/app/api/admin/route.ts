@@ -1,6 +1,7 @@
 import { copyFile, mkdir, readFile, rename, writeFile } from "node:fs/promises";
 import { basename, join } from "node:path";
 import type { NextRequest } from "next/server";
+import { themeIds } from "@/content/themes";
 
 /**
  * Local admin API. Reads and writes src/content/editable.json and replaces the resume PDF.
@@ -10,7 +11,7 @@ import type { NextRequest } from "next/server";
 
 const root = process.cwd();
 const dataFile = join(root, "src/content/editable.json");
-const themes = ["midnight", "aurora", "violet", "gold", "light"];
+const themes: string[] = themeIds;
 const notFound = () => new Response("Not found", { status: 404 });
 
 function allowed(request: NextRequest) {
@@ -26,6 +27,7 @@ async function readData() {
 /** Rejects anything that would break the site: wrong theme, missing titles, bad shapes. */
 function validate(data: Record<string, unknown>): string | null {
   if (!themes.includes(String(data.theme))) return "Unknown theme.";
+  if (data.mode !== "light" && data.mode !== "dark") return "Mode must be light or dark.";
   if (typeof data.themePicker !== "boolean") return "themePicker must be true or false.";
   const about = data.about as Record<string, unknown> | undefined;
   if (!about || typeof about.heading !== "string" || typeof about.statement !== "string") return "About needs a heading and a statement.";
@@ -61,6 +63,7 @@ export async function PUT(request: NextRequest) {
   const next = {
     ...current,
     theme: incoming.theme,
+    mode: incoming.mode ?? current.mode ?? "light",
     themePicker: incoming.themePicker,
     about: incoming.about,
     projectsIntro: typeof incoming.projectsIntro === "string" ? incoming.projectsIntro : current.projectsIntro,

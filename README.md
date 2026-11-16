@@ -45,7 +45,7 @@ Run `npm run dev`, then open http://localhost:3000/admin (or the port dev prints
 
 - **Projects**: search, edit every field, show a project first or put it under "View more", reorder, add or remove.
 - **About**: heading, statement, paragraphs and facts.
-- **Theme**: pick the default theme and show or hide the Theme button.
+- **Theme**: pick one of six themes (Powder Pastel, Noir Gold, Ivory Neon, Obsidian Crimson, Charcoal Coral, Classic Blue) and Light or Dark mode. Optionally let visitors switch themes themselves.
 - **Resume**: replace the PDF. The old one is copied to `_old/resume-backups/` first.
 
 Save writes to `src/content/editable.json`; the site reloads with the change. Commit and push that file (and a new resume PDF) to update the live site.

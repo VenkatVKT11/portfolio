@@ -1,7 +1,8 @@
 "use client";
 
-import { useEffect, useMemo, useState, type ReactNode } from "react";
+import { Fragment, useEffect, useMemo, useState, type ReactNode } from "react";
 import type { ImageSource, Project } from "@/content/site";
+import { swatch, themes } from "@/content/themes";
 
 /*
  * Local admin panel. Loads src/content/editable.json through /api/admin, edits it in the browser,
@@ -12,6 +13,7 @@ import type { ImageSource, Project } from "@/content/site";
 type Fact = { label: string; value: string };
 type Editable = {
   theme: string;
+  mode: "light" | "dark";
   themePicker: boolean;
   resume: string;
   about: { heading: string; statement: string; paragraphs: string[]; facts: Fact[] };
@@ -19,13 +21,6 @@ type Editable = {
   projects: Project[];
 };
 
-const themes = [
-  { id: "midnight", name: "Midnight Blue", note: "Royal blue on deep navy", a: "#3d68ff", b: "#070b18" },
-  { id: "aurora", name: "Aurora Teal", note: "Teal and sky on green-black", a: "#2dd4bf", b: "#04110f" },
-  { id: "violet", name: "Royal Violet", note: "Violet and pink on plum-black", a: "#9277ff", b: "#0c0817" },
-  { id: "gold", name: "Graphite Gold", note: "Gold on charcoal", a: "#e8b964", b: "#0c0c0e" },
-  { id: "light", name: "Classic Light", note: "The original white and blue design", a: "#1447ff", b: "#ffffff" },
-];
 
 const tabs = ["Projects", "About", "Theme", "Resume"] as const;
 type Tab = (typeof tabs)[number];
@@ -535,16 +530,42 @@ function ThemeTab({ data, update }: { data: Editable; update: (patch: Partial<Ed
   // Preview here too, so the admin page shows the chosen colours before saving.
   useEffect(() => {
     document.documentElement.setAttribute("data-theme", data.theme);
-  }, [data.theme]);
+    document.documentElement.setAttribute("data-mode", data.mode ?? "light");
+  }, [data.theme, data.mode]);
 
   return (
     <section className="card grid max-w-4xl gap-5 p-5 md:p-7">
       <h2 className="font-display text-2xl font-semibold tracking-tight">Theme</h2>
-      <p className="text-mute">The default colours every visitor sees. Save to apply it to the site.</p>
+      <p className="text-mute">Pick a theme and Light or Dark to preview it on this page, then Save: the site switches to it.</p>
+
+      <div className="grid gap-2">
+        <p className="text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-mute">Mode</p>
+        <div className="inline-flex w-fit gap-1 rounded-full border border-line bg-[var(--surface)] p-1" role="radiogroup" aria-label="Light or dark">
+          {(["light", "dark"] as const).map((m) => (
+            <button
+              key={m}
+              type="button"
+              role="radio"
+              aria-checked={(data.mode ?? "light") === m}
+              onClick={() => update({ mode: m })}
+              className={`rounded-full px-5 py-2 text-[0.9375rem] font-semibold transition-colors ${
+                (data.mode ?? "light") === m ? "nav-active" : "text-mute hover:text-ink"
+              }`}
+            >
+              {m === "light" ? "☀︎ Light" : "☾ Dark"}
+            </button>
+          ))}
+        </div>
+      </div>
       <div className="grid gap-3 sm:grid-cols-2">
-        {themes.map((t) => (
+        {themes.map((t, i) => (
+          <Fragment key={t.id}>
+            {(i === 0 || themes[i - 1].group !== t.group) && (
+              <p className="pt-2 text-[0.8125rem] font-semibold uppercase tracking-[0.14em] text-mute sm:col-span-2">
+                {t.group === "Palettes" ? "From your palettes" : "Original design"}
+              </p>
+            )}
           <button
-            key={t.id}
             type="button"
             onClick={() => update({ theme: t.id })}
             aria-pressed={data.theme === t.id}
@@ -554,7 +575,7 @@ function ThemeTab({ data, update }: { data: Editable; update: (patch: Partial<Ed
           >
             <span
               className="h-12 w-12 flex-none rounded-full shadow-[inset_0_0_0_2px_rgb(255_255_255/0.2)]"
-              style={{ background: `linear-gradient(135deg, ${t.a} 0 50%, ${t.b} 50% 100%)` }}
+              style={{ background: swatch(t.colors) }}
             />
             <span>
               <span className="block font-semibold">{t.name}</span>
@@ -562,6 +583,7 @@ function ThemeTab({ data, update }: { data: Editable; update: (patch: Partial<Ed
             </span>
             {data.theme === t.id && <span className="ml-auto text-[0.8125rem] font-semibold text-blue">Selected</span>}
           </button>
+          </Fragment>
         ))}
       </div>
       <label className="flex items-center gap-3 rounded-xl border border-line bg-white/[0.03] px-4 py-3">
@@ -572,8 +594,10 @@ function ThemeTab({ data, update }: { data: Editable; update: (patch: Partial<Ed
           onChange={(e) => update({ themePicker: e.target.checked })}
         />
         <span>
-          <span className="block font-semibold">Show the Theme button on the site</span>
-          <span className="block text-[0.8125rem] text-mute">Turn off when you have chosen, so visitors see one finished design.</span>
+          <span className="block font-semibold">Also let visitors switch themes</span>
+          <span className="block text-[0.8125rem] text-mute">
+            Off (recommended): every visitor sees the theme you pick here. On: a Theme button lets visitors choose their own.
+          </span>
         </span>
       </label>
     </section>
