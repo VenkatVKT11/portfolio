@@ -1,36 +1,38 @@
 "use client";
 
-import { useRef, type ReactNode } from "react";
-import gsap from "gsap";
-import { ScrollTrigger } from "gsap/ScrollTrigger";
-import { useGSAP } from "@gsap/react";
+import { useEffect, useRef, type ReactNode } from "react";
 
-gsap.registerPlugin(ScrollTrigger, useGSAP);
-
-/** Staggers its direct children into view the first time they scroll in. */
-export function Reveal({ children, className }: { children: ReactNode; className?: string }) {
+/**
+ * Staggers its direct children into view the first time they scroll in.
+ *
+ * The motion is a CSS animation on the `translate` property (see .reveal-ready in globals.css),
+ * so it never fights the hover lift, which animates `transform`. Without JavaScript, or with
+ * reduced motion turned on, the children simply show as they are.
+ */
+export function Reveal({ children, className, role }: { children: ReactNode; className?: string; role?: string }) {
   const root = useRef<HTMLDivElement>(null);
 
-  useGSAP(
-    () => {
-      const mm = gsap.matchMedia();
-      mm.add("(prefers-reduced-motion: no-preference)", () => {
-        if (!root.current) return;
-        gsap.from(root.current.children, {
-          y: 44,
-          opacity: 0,
-          duration: 0.9,
-          ease: "power3.out",
-          stagger: 0.09,
-          scrollTrigger: { trigger: root.current, start: "top 84%", once: true },
-        });
-      });
-    },
-    { scope: root },
-  );
+  useEffect(() => {
+    const el = root.current;
+    if (!el || window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+
+    el.classList.add("reveal-ready");
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        // Reveal once it enters the screen, or straight away if the page opened below it.
+        if (entry.isIntersecting || entry.boundingClientRect.top < 0) {
+          el.classList.add("is-in");
+          observer.disconnect();
+        }
+      },
+      { rootMargin: "0px 0px -12% 0px" },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
-    <div ref={root} className={className}>
+    <div ref={root} className={className} role={role}>
       {children}
     </div>
   );

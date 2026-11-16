@@ -41,9 +41,9 @@ export function Nav() {
     <header className="no-print fixed inset-x-0 top-3 z-50 px-3 md:top-5 md:px-6">
       <nav
         aria-label="Main"
-        className="glass mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-3 rounded-[28px] py-2 pl-5 pr-2.5 max-[400px]:gap-x-2 max-[400px]:pl-4 max-[400px]:pr-2"
+        className="glass nav-bar mx-auto flex max-w-6xl flex-wrap items-center justify-between gap-x-3 rounded-[28px] py-2 pl-5 pr-2.5 max-[400px]:gap-x-2 max-[400px]:pl-4 max-[400px]:pr-2"
       >
-        <Link href="/#top" className="font-display text-lg font-semibold tracking-tight max-[400px]:text-[0.9375rem]">
+        <Link href="/#top" className="-my-2 py-2 font-display text-lg font-semibold tracking-tight max-[400px]:text-[0.9375rem]">
           {site.name}
         </Link>
 
@@ -56,7 +56,7 @@ export function Nav() {
                   href={`#${link.id}`}
                   aria-current={current ? "true" : undefined}
                   className={`${linkStyle} ${
-                    current ? "bg-white text-blue shadow-[0_0_0_1px_rgb(196_202_214/0.6)]" : "text-ink/70 hover:text-ink"
+                    current ? "nav-active" : "text-ink/70 hover:text-ink"
                   }`}
                 >
                   {link.label}
@@ -68,6 +68,8 @@ export function Nav() {
             <li>
               <a
                 href={site.resume}
+                data-track="resume_download"
+                data-track-location="nav"
                 target="_blank"
                 rel="noopener noreferrer"
                 className={`${linkStyle} text-ink/70 hover:text-ink`}
@@ -82,6 +84,8 @@ export function Nav() {
           {/* Leads to "Get in touch", where LinkedIn, GitHub and email are listed. */}
           <a
             href="#contact"
+            data-track="cta_click"
+            data-track-label="nav_contact"
             aria-current={active === "contact" ? "true" : undefined}
             className="btn btn-primary !min-h-10 !px-5 text-[0.9375rem] max-[400px]:!px-3.5 max-[400px]:!text-sm"
           >
@@ -126,6 +130,8 @@ export function Nav() {
               <li>
                 <a
                   href={site.resume}
+                  data-track="resume_download"
+                  data-track-location="mobile_menu"
                   target="_blank"
                   rel="noopener noreferrer"
                   onClick={() => setOpen(false)}

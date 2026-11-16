@@ -1,4 +1,10 @@
+import editable from "./editable.json";
+
 /**
+ * The About section, the projects, the theme and the resume path live in editable.json,
+ * which the local admin panel (/admin, only under `npm run dev`) reads and writes.
+ * Everything else is edited here.
+ *
  * All portfolio content lives in this file. Edit text here; the pages update.
  * Leave a field as "" when you don't have it yet: the site shows a neat
  * "to be added" placeholder instead of inventing anything.
@@ -23,8 +29,21 @@ export const site = {
   /** Paste full profile URLs once verified, e.g. "https://www.linkedin.com/in/…". */
   linkedin: "https://www.linkedin.com/in/venkatesan1104/",
   github: "https://github.com/VenkatVKT11",
+  /**
+   * Google Analytics 4 measurement ID, e.g. "G-ABC123XYZ". While it is "", no analytics script loads.
+   * Once set, the site reports page views plus these events: contact_click, resume_download,
+   * project_view, project_link_click, project_share, view_more_projects and cta_click.
+   */
+  ga4Id: "",
+  /**
+   * Colour theme: "midnight" (royal blue), "aurora" (teal), "violet" (violet and pink), "gold" (charcoal and gold)
+   * or "light" (the original white and blue design).
+   * themePicker shows a small switcher so you can compare them live; set it to false once you have chosen.
+   */
+  theme: editable.theme as ThemeId,
+  themePicker: editable.themePicker,
   /** The PDF in /public behind the Resume link and the Download Resume button. Set to "" to hide both. */
-  resume: "/Venkatesan-G-Resume.pdf",
+  resume: editable.resume,
   /** Your photo, stored in /public exactly as you supplied it. Set to "" to fall back to the illustration below. */
   profileImage: "/profile.webp",
   /**
@@ -42,7 +61,7 @@ export const hero = {
   pillars: [
     { name: "Digital Marketing", project: "ecommerce-digital-marketing" },
     { name: "AI", project: "ai-marketing-automation" },
-    { name: "Data", project: "sales-analytics-dashboard" },
+    { name: "Data", project: "adventure-works-power-bi" },
   ],
   primaryCta: { label: "View My Work", href: "#projects" },
   secondaryCta: { label: "Contact Me", href: "#contact" },
@@ -120,27 +139,14 @@ export const workflow = {
   ],
 } as const;
 
-export const about = {
-  heading: "About me",
-  statement: "I studied AI and data science, then took it into marketing.",
-  paragraphs: [
-    "I started as a digital marketing intern in April 2026 and became Digital Marketing Manager that July. My day is split between performance marketing on Meta and Google, and building automations that save the team from repeating the same task twice.",
-    "I care most about lead generation, video marketing and putting AI to practical use: prompts that produce usable content, and workflows that run without someone watching them.",
-  ],
-  facts: [
-    { label: "Based in", value: "Chennai, Tamil Nadu, India" },
-    { label: "Role", value: "Digital Marketing Manager" },
-    { label: "Degree", value: "B.Tech, Artificial Intelligence and Data Science" },
-    { label: "Languages", value: "Tamil (native), English (professional)" },
-  ],
-};
+export const about = editable.about;
 
 export const skills = {
   heading: "Skills and tools",
-  intro: "Four areas I work in every week, each linked to the projects where I used it.",
+  intro: "Five areas I work in, each linked to the projects where I used it.",
   groups: [
     {
-      name: "Digital marketing",
+      name: "Digital skills",
       accent: false,
       evidence: ["ecommerce-digital-marketing", "real-estate-digital-marketing"],
       skills: [
@@ -186,7 +192,7 @@ export const skills = {
     {
       name: "Technical",
       accent: false,
-      evidence: ["ecommerce-digital-marketing", "real-estate-digital-marketing"],
+      evidence: ["mintcred-landing-page", "smart-attendance-system", "ecommerce-digital-marketing"],
       skills: [
         "Website development",
         "Landing page development",
@@ -195,6 +201,26 @@ export const skills = {
         "Antigravity",
         "Git",
         "GitHub",
+        "React",
+        "Tailwind CSS",
+        "Python",
+      ],
+    },
+    {
+      name: "Data and analytics",
+      accent: false,
+      evidence: ["adventure-works-power-bi", "sales-analytics-dashboard", "smart-attendance-system"],
+      skills: [
+        "Power BI",
+        "DAX",
+        "Power Query",
+        "Microsoft Excel",
+        "Pivot tables",
+        "Dashboard design",
+        "Data visualization",
+        "SQL",
+        "Python",
+        "OpenCV",
       ],
     },
   ],
@@ -240,8 +266,17 @@ export type Project = {
   slug: string;
   title: string;
   categories: string[];
-  /** Card preview image in /public. The current ones are generated mockups; swap in real screenshots when you have them. */
+  /** true: shown in the main grid. false: shown only after "View more projects". */
+  featured: boolean;
+  /** Card preview image in /public. */
   image: string;
+  /**
+   * Where the pictures come from, shown as a tag on every picture:
+   * - "screenshot": captured from the real project (the running app, its build, or the original export).
+   * - "rebuilt": drawn from the project's real data file because the original app was not available.
+   * - "mockup": illustrative picture made for this portfolio.
+   */
+  imageSource: ImageSource;
   overview: string;
   objectives: string[];
   contributions: string[];
@@ -253,206 +288,38 @@ export type Project = {
   metrics: { label: string; value: string }[];
   metricsNote: string;
   /** More pictures in /public, shown in the pop-up gallery. */
-  gallery: string[];
+  gallery: { src: string; caption: string }[];
+  /** Optional screen recording in /public, shown in the pop-up. */
+  video?: { src: string; poster: string; caption: string };
+  /** Caption for the main picture, shown in the pop-up. */
+  imageCaption?: string;
   link: string;
+  linkLabel?: string;
 };
 
-/**
- * The project pictures are mockups generated for this portfolio, not screenshots of the live work.
- * The site says so on every picture. When you add real screenshots, set both of these to "".
- */
-export const projectImageLabel = "Mockup";
-export const projectGalleryNote =
-  "These pictures are illustrative mockups made for this portfolio. They are not screenshots of the live project.";
+export type ImageSource = "screenshot" | "rebuilt" | "mockup";
 
-/** Client, company and brand names are deliberately left out of every project. */
-export const projectsIntro =
-  "Four projects across e-commerce, real estate, AI automation and business intelligence. Client names are left out for confidentiality.";
+export const themeIds = ["midnight", "aurora", "violet", "gold", "light"] as const;
+export type ThemeId = (typeof themeIds)[number];
 
-export const projects: Project[] = [
-  {
-    slug: "ecommerce-digital-marketing",
-    title: "E-commerce and Digital Marketing",
-    categories: ["E-commerce", "Performance Marketing", "Social Media"],
-    image: "/projects/gallery/ecommerce-store.jpg",
-    overview:
-      "Worked on a cosmetics e-commerce project focused on improving online product discovery, strengthening social media presence, and supporting digital sales campaigns.",
-    objectives: [
-      "Improve online product visibility.",
-      "Support e-commerce customer acquisition.",
-      "Increase social media engagement.",
-      "Generate potential customer enquiries.",
-      "Improve the digital shopping experience.",
-    ],
-    contributions: [
-      "Supported e-commerce website requirements and product presentation.",
-      "Worked on website functionality and user experience testing.",
-      "Planned social media content calendars.",
-      "Created marketing creatives using Canva and AI tools.",
-      "Worked on Meta Ads campaigns for awareness, engagement, and lead generation.",
-      "Supported festive promotions and B2C/B2B campaigns.",
-      "Reviewed campaign performance and audience engagement.",
-      "Supported website and checkout-flow testing.",
-    ],
-    process: [
-      "Gathered and documented the business requirements for a live store with user and admin modules.",
-      "Ran functional tests and validation checks on the implemented features.",
-      "Helped manage the Meta Ads campaign and the digital promotion of the store.",
-      "Supported the move from development and testing to the production site.",
-    ],
-    tools: ["Meta Ads Manager", "Canva", "AI Content Creation Tools", "Social Media Platforms", "E-commerce Website", "Google Analytics"],
-    deliverables: [
-      "E-commerce website support",
-      "Social media content strategy",
-      "Campaign creatives",
-      "Meta Ads campaign execution",
-      "Product promotion content",
-      "Website testing and validation",
-    ],
-    metrics: [
-      { label: "Instagram followers", value: "3,500 to 4,200" },
-      { label: "Leads generated", value: "100+" },
-    ],
-    metricsNote: "Historical project figures, not current performance.",
-    gallery: ["/projects/gallery/ecommerce-social.jpg"],
-    link: "",
-  },
-  {
-    slug: "real-estate-digital-marketing",
-    title: "Real Estate Digital Marketing",
-    categories: ["Real Estate", "Website Development", "Lead Generation"],
-    image: "/projects/gallery/real-estate-site.jpg",
-    overview:
-      "Worked on a real estate marketing project focused on promoting residential plots through digital platforms, website support, marketing creatives, and lead-generation campaigns.",
-    objectives: [
-      "Improve online property visibility.",
-      "Present property information effectively.",
-      "Generate potential buyer enquiries.",
-      "Support digital advertising campaigns.",
-      "Improve the customer enquiry journey.",
-    ],
-    contributions: [
-      "Supported real estate website development and content presentation.",
-      "Assisted with website functionality testing.",
-      "Worked on property marketing creatives.",
-      "Supported Meta Ads campaign planning and execution.",
-      "Developed promotional content for residential plot campaigns.",
-      "Supported lead-generation activities.",
-      "Reviewed website sections and user navigation.",
-      "Assisted with campaign content and digital promotion.",
-    ],
-    process: [
-      "Supported website development, functional testing and workflow validation.",
-      "Ran Meta Ads campaigns to drive traffic and generate leads.",
-      "Helped with implementation, issue identification and feature validation before and after launch.",
-    ],
-    tools: [
-      "Meta Ads Manager",
-      "Canva",
-      "AI Creative Tools",
-      "Website Development Tools",
-      "Social Media Platforms",
-      "SEO Fundamentals",
-    ],
-    deliverables: [
-      "Real estate website support",
-      "Property marketing creatives",
-      "Digital advertising campaigns",
-      "Promotional content",
-      "Lead-generation campaign support",
-      "Website testing and validation",
-    ],
-    metrics: [],
-    metricsNote: "",
-    gallery: ["/projects/gallery/real-estate-ads.jpg"],
-    link: "",
-  },
-  {
-    slug: "ai-marketing-automation",
-    title: "AI and Marketing Automation",
-    categories: ["Artificial Intelligence", "Marketing Automation", "Digital Strategy"],
-    image: "/projects/gallery/ai-workflow.jpg",
-    overview:
-      "Worked on AI-focused technology and digital marketing initiatives involving AI content creation, marketing automation concepts, workflow optimization, and technology-focused brand communication.",
-    objectives: [
-      "Explore AI-powered marketing opportunities.",
-      "Improve content production workflows.",
-      "Reduce repetitive marketing tasks through automation.",
-      "Develop technology-focused digital communication.",
-      "Support scalable marketing operations.",
-    ],
-    contributions: [
-      "Used prompt engineering to create structured AI content.",
-      "Explored AI-assisted image and video generation.",
-      "Developed marketing content concepts.",
-      "Worked with n8n workflow automation concepts.",
-      "Explored automated marketing workflows.",
-      "Supported technology-focused social media content.",
-      "Assisted with digital brand communication.",
-      "Explored AI tools for improving marketing productivity.",
-    ],
-    process: [],
-    tools: [
-      "ChatGPT",
-      "Claude",
-      "n8n",
-      "Prompt Engineering",
-      "AI Image Generation",
-      "AI Video Generation",
-      "Canva",
-      "GravityWrite",
-    ],
-    deliverables: [
-      "AI-generated marketing content",
-      "Prompt workflows",
-      "Automation workflow concepts",
-      "Social media content",
-      "Technology marketing creatives",
-      "AI-assisted content production processes",
-    ],
-    metrics: [],
-    metricsNote: "",
-    gallery: ["/projects/gallery/ai-content.jpg"],
-    link: "",
-  },
-  {
-    slug: "sales-analytics-dashboard",
-    title: "Sales Analytics Dashboard",
-    categories: ["Data Analytics", "Business Intelligence", "Data Visualization"],
-    image: "/projects/gallery/sales-dashboard.jpg",
-    overview:
-      "Developed a sales analytics dashboard project using business sales data to explore performance trends, organize key metrics, and communicate insights through visual reporting.",
-    objectives: [
-      "Understand sales performance.",
-      "Identify business trends.",
-      "Organize sales data.",
-      "Present key business metrics.",
-      "Support data-driven decision-making.",
-    ],
-    contributions: [
-      "Worked with structured sales datasets.",
-      "Explored and organized sales information.",
-      "Analysed sales performance trends.",
-      "Developed visual representations of business data.",
-      "Organized key metrics into dashboard sections.",
-      "Presented data in a clear and understandable format.",
-      "Explored insights from sales performance patterns.",
-    ],
-    process: [],
-    tools: ["Microsoft Excel", "Power BI", "Data Visualization", "Data Analysis", "Business Intelligence Concepts"],
-    deliverables: [
-      "Sales analytics dashboard",
-      "KPI visualizations",
-      "Sales performance reports",
-      "Data-driven insights",
-      "Business performance analysis",
-    ],
-    metrics: [],
-    metricsNote: "",
-    gallery: ["/projects/gallery/sales-sheet.jpg"],
-    link: "",
-  },
-];
+export const imageSourceLabel: Record<ImageSource, string> = {
+  screenshot: "Real screenshot",
+  rebuilt: "Built from project data",
+  mockup: "Mockup",
+};
+
+export const imageSourceNote: Record<ImageSource, string> = {
+  screenshot: "Captured from the actual project.",
+  rebuilt:
+    "Drawn from the figures in the project's own Excel workbook. Excel was not available to capture the original file.",
+  mockup:
+    "These pictures are illustrative mockups made for this portfolio. They are not screenshots of the live project.",
+};
+
+/** Client, company and brand names are deliberately left out of every client project. */
+export const projectsIntro = editable.projectsIntro;
+
+export const projects = editable.projects as Project[];
 
 /** Formal roles, newest first. `meta` holds employment type, work mode and location. */
 export const experience = [

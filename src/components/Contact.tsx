@@ -28,7 +28,7 @@ const channels = [
 
 export function Contact() {
   return (
-    <footer id="contact" className="relative overflow-hidden border-t border-line px-5 py-20 md:px-10 md:py-32">
+    <footer id="contact" className="band-dark relative overflow-hidden border-t border-line px-5 py-20 md:px-10 md:py-32">
       <div className="glow glow-blue -right-20 top-24 h-[28rem] w-[28rem]" aria-hidden="true" />
       <div className="glow glow-silver -left-24 bottom-0 h-[22rem] w-[26rem]" aria-hidden="true" />
 
@@ -43,21 +43,23 @@ export function Contact() {
             {site.resume && (
               <div className="mt-10 border-t border-line pt-7">
                 <p className="text-xl text-ink/80">{contact.resumeText}</p>
-                <a href={site.resume} download className="btn btn-outline mt-5">
+                <a href={site.resume} download className="btn btn-outline mt-5" data-track="resume_download" data-track-location="contact">
                   Download Resume
                 </a>
               </div>
             )}
           </div>
 
-          <ul className="glass rounded-[32px] p-3 md:p-4">
+          <ul className="glass spotlight rounded-[32px] p-3 md:p-4">
             {channels.map((channel) => (
               <li key={channel.label} className="border-b border-line last:border-b-0">
                 <a
                   href={channel.url}
+                  data-track="contact_click"
+                  data-track-method={channel.label.toLowerCase()}
                   target={channel.newTab ? "_blank" : undefined}
                   rel={channel.newTab ? "noopener noreferrer" : undefined}
-                  className="group flex items-center gap-3 rounded-[22px] px-3 py-4 transition-colors duration-300 hover:bg-white sm:gap-4 sm:px-4 sm:py-5 md:gap-5 md:px-5 md:py-6"
+                  className="group flex items-center gap-3 rounded-[22px] px-3 py-4 transition-colors duration-300 hover:bg-surface sm:gap-4 sm:px-4 sm:py-5 md:gap-5 md:px-5 md:py-6"
                 >
                   <span className="grid h-11 w-11 flex-none place-items-center rounded-xl border border-line bg-white sm:h-14 sm:w-14 sm:rounded-2xl">
                     <Image src={channel.logo} alt="" width={30} height={30} unoptimized className="h-6 w-6 sm:h-[30px] sm:w-[30px]" />

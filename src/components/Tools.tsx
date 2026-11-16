@@ -7,17 +7,21 @@ import { toolCategories, tools, type Tool } from "@/content/site";
 /** The tool's official logo, or a plain text mark of its initials when no verified logo exists. */
 function ToolLogo({ tool, size }: { tool: Tool; size: number }) {
   if (tool.logo) {
+    // White tile so dark logos (GitHub, CapCut and others) stay visible on the dark theme.
+    const inner = Math.round(size * 0.68);
     return (
-      <Image
-        src={tool.logo}
-        alt=""
-        width={size}
-        height={size}
-        unoptimized
-        loading="eager"
-        style={{ width: size, height: size }}
-        className={`flex-none ${tool.logo.endsWith(".png") ? "rounded-[22%]" : ""}`}
-      />
+      <span className="logo-tile" style={{ width: size, height: size }}>
+        <Image
+          src={tool.logo}
+          alt=""
+          width={inner}
+          height={inner}
+          unoptimized
+          loading="eager"
+          style={{ width: inner, height: inner }}
+          className={`flex-none ${tool.logo.endsWith(".png") ? "rounded-[22%]" : ""}`}
+        />
+      </span>
     );
   }
   const initials = tool.name
@@ -81,7 +85,7 @@ export function Tools() {
   };
 
   return (
-    <section id="tools" className="relative bg-[#eaf1ff] py-16 md:py-24">
+    <section id="tools" className="band-soft relative border-y border-line py-16 md:py-24">
       <h2 className="text-center text-[0.8125rem] font-semibold uppercase tracking-[0.3em] text-ink/75">Tools I use</h2>
 
       <div className="mt-10 grid gap-2 md:gap-3">
@@ -105,7 +109,7 @@ export function Tools() {
         onClick={(e) => {
           if (e.target === e.currentTarget) close();
         }}
-        className="m-auto max-h-[90dvh] w-[calc(100%-24px)] max-w-5xl overflow-y-auto rounded-[32px] border border-line bg-white p-0 text-ink shadow-[0_40px_90px_-40px_rgb(60_70_90/0.5)]"
+        className="m-auto max-h-[90dvh] w-[calc(100%-24px)] max-w-5xl overflow-y-auto rounded-[32px] border border-line bg-[var(--raise)] p-0 text-ink shadow-[0_40px_90px_-40px_rgb(60_70_90/0.5)]"
       >
         <div className="p-5 sm:p-9">
           <div className="flex items-start justify-between gap-6">
@@ -134,13 +138,13 @@ export function Tools() {
                   {group.map((tool) => (
                     <li
                       key={tool.name}
-                      className="flex min-w-0 flex-col gap-3 rounded-[20px] border border-line bg-surface p-3.5 transition-colors sm:p-4 duration-300 hover:border-blue/40 hover:bg-white"
+                      className="flex min-w-0 flex-col gap-3 rounded-[20px] border border-line bg-surface p-3.5 transition-colors sm:p-4 duration-300 hover:border-blue/40 hover:bg-white/[0.07]"
                     >
                       <span className="flex items-start justify-between gap-3">
                         <ToolLogo tool={tool} size={40} />
                         <span
                           className={`rounded-full px-2.5 py-1 text-[0.75rem] font-semibold leading-none ${
-                            tool.status === "In use" ? "bg-blue/10 text-blue" : "border border-line bg-white text-mute"
+                            tool.status === "In use" ? "bg-blue/10 text-blue" : "border border-line bg-surface text-mute"
                           }`}
                         >
                           {tool.status}

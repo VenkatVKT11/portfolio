@@ -6,6 +6,10 @@ import { ScrollCue } from "./ScrollCue";
 
 const delay = (ms: number) => ({ "--d": ms }) as CSSProperties;
 
+const words = hero.headline.split(" ");
+const headStart = words.slice(0, -2).join(" ");
+const headEnd = words.slice(-2).join(" ");
+
 export function Hero() {
   return (
     // Fills the first screen. The dotted name has its own band under the nav; the photo rises
@@ -13,19 +17,21 @@ export function Hero() {
     // Sizes and offsets live in globals.css under ".hero".
     <section
       id="top"
-      className="hero relative flex min-h-[100svh] flex-col overflow-hidden px-5 pb-8 md:px-10 lg:pb-6"
+      className="hero band-dark relative flex min-h-[100svh] flex-col overflow-hidden px-5 pb-10 md:px-10 lg:pb-0"
     >
       <NameParticles text={site.name} />
-      <div className="glow glow-blue -right-24 top-16 h-[26rem] w-[26rem]" aria-hidden="true" />
+      {/* Slowly drifting aurora light behind the hero. */}
+      <div className="glow glow-blue aurora -right-24 top-16 h-[26rem] w-[26rem]" aria-hidden="true" />
+      <div className="glow glow-silver aurora aurora-slow left-[18%] top-[45%] h-[22rem] w-[30rem]" aria-hidden="true" />
 
-      <div className="relative mx-auto flex w-full max-w-[1280px] flex-1 items-start">
-        <div className="grid w-full gap-12 lg:grid-cols-[minmax(0,0.85fr)_minmax(0,1fr)] lg:gap-16">
+      <div className="relative mx-auto flex w-full max-w-[1280px] flex-1 items-start lg:items-stretch">
+        <div className="grid w-full gap-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,1fr)] lg:gap-10 xl:gap-14">
           {/* Photo, left on desktop and first on phones. Its top overlaps the name behind it. */}
           <div className="hero-photo-cell">
           <figure className="hero-photo rise relative mx-auto w-full max-w-[380px]" style={delay(80)}>
             {/* Square frame, the same shape as the photo, so nothing is cropped. */}
             <div
-              className={`relative w-full overflow-hidden rounded-[32px] ${
+              className={`relative w-full overflow-hidden rounded-[32px] lg:rounded-none ${
                 site.profileImage ? "aspect-square" : "aspect-[4/5] bg-surface"
               }`}
             >
@@ -62,10 +68,13 @@ export function Hero() {
 
           {/* Introduction card, right on desktop, about as tall as the photo */}
           <div
-            className="hero-card rise glass rounded-[32px] p-7 sm:p-10 lg:flex lg:flex-col lg:justify-center lg:p-[clamp(1.75rem,4.5svh,3.5rem)]"
+            className="hero-card rise glass relative rounded-[32px] p-7 sm:p-10 lg:flex lg:flex-col lg:justify-center lg:p-[clamp(1.75rem,4.5svh,3.5rem)]"
             style={delay(240)}
           >
-            <h1 className="hero-title">{hero.headline}</h1>
+            <h1 className="hero-title">
+              {/* The last two words carry the accent gradient. */}
+              {headStart} <span className="text-gradient">{headEnd}</span>
+            </h1>
 
             <p className="mt-6 font-display text-xl font-semibold tracking-tight text-blue md:text-2xl">
               {hero.pillars.map((pillar, i) => (
@@ -77,7 +86,7 @@ export function Hero() {
                   )}
                   <a
                     href={`#project-${pillar.project}`}
-                    className="underline decoration-transparent decoration-2 underline-offset-[6px] transition-colors hover:decoration-blue"
+                    className="-mx-1 rounded-md px-1 py-2 underline decoration-transparent decoration-2 underline-offset-[6px] transition-colors hover:decoration-blue"
                   >
                     {pillar.name}
                   </a>
@@ -87,20 +96,21 @@ export function Hero() {
 
             <p className="hero-desc mt-5 max-w-[46ch] text-lg text-ink/80 xl:text-xl xl:leading-relaxed">{hero.description}</p>
 
+            {/* The scroll ring sits in the card's empty corner beside the buttons (wide screens only). */}
+            <div className="hero-cue absolute bottom-[clamp(1.25rem,3svh,2.25rem)] right-[clamp(1.25rem,2.4vw,2.5rem)] hidden xl:block">
+              <ScrollCue />
+            </div>
+
             <div className="hero-actions mt-9 flex flex-wrap gap-3">
-              <a href={hero.primaryCta.href} className="btn btn-primary">
+              <a href={hero.primaryCta.href} className="btn btn-primary max-sm:grow" data-track="cta_click" data-track-label="hero_view_work">
                 {hero.primaryCta.label}
               </a>
-              <a href={hero.secondaryCta.href} className="btn btn-outline">
+              <a href={hero.secondaryCta.href} className="btn btn-outline max-sm:grow" data-track="cta_click" data-track-label="hero_contact">
                 {hero.secondaryCta.label}
               </a>
             </div>
           </div>
         </div>
-      </div>
-
-      <div className="hero-cue relative mt-10 flex justify-center lg:mt-6">
-        <ScrollCue />
       </div>
     </section>
   );

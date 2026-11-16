@@ -16,7 +16,7 @@ const body = Inter({
 });
 
 const description =
-  "Portfolio of Venkatesan G, Digital Marketing Manager in Chennai working across performance marketing, AI automation and data analytics.";
+  "Venkatesan G, Digital Marketing Manager in Chennai. Meta and Google Ads, SEO, n8n AI automation, and Power BI and Excel dashboards, with real project work.";
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -31,8 +31,19 @@ export const metadata: Metadata = {
     "Performance Marketing",
     "AI Automation",
     "Marketing Automation",
+    "Meta Ads",
+    "Google Ads",
+    "SEO",
+    "Lead Generation",
+    "n8n",
+    "Power BI",
+    "Data Analytics",
+    "Digital Marketing Chennai",
     "Chennai",
   ],
+  creator: "Venkatesan G",
+  category: "portfolio",
+  robots: { index: true, follow: true, "max-image-preview": "large", "max-snippet": -1 },
   authors: [{ name: "Venkatesan G" }],
   alternates: { canonical: "/" },
   openGraph: {
@@ -51,14 +62,24 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#ffffff",
-  colorScheme: "light",
+  themeColor: "#070b18",
+  colorScheme: "dark",
 };
 
 export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
-    <html lang="en" className={`${heading.variable} ${body.variable} antialiased`}>
-      <body>{children}</body>
+    <html lang="en" data-theme={site.theme} className={`${heading.variable} ${body.variable} antialiased`} suppressHydrationWarning>
+      <body>
+        {site.themePicker && (
+          // Applies a theme chosen in the preview picker before the page paints, so it never flashes.
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `try{var t=localStorage.getItem("vg-theme");if(t)document.documentElement.dataset.theme=t}catch(e){}`,
+            }}
+          />
+        )}
+        {children}
+      </body>
     </html>
   );
 }

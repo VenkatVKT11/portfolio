@@ -20,6 +20,8 @@ export function NameParticles({ text }: { text: string }) {
     const pointer = { x: -9999, y: -9999 };
     let dots: Dot[] = [];
     let radius = 2;
+    // Dot colour comes from CSS (the canvas's `color`), so the dark hero can use light dots.
+    let color = "#eef1f8";
     let width = 0;
     let height = 0;
     let frame = 0;
@@ -29,7 +31,7 @@ export function NameParticles({ text }: { text: string }) {
 
     const draw = () => {
       ctx.clearRect(0, 0, width, height);
-      ctx.fillStyle = "#171717";
+      ctx.fillStyle = color;
       ctx.beginPath();
       for (const d of dots) {
         ctx.moveTo(d.x + radius, d.y);
@@ -50,6 +52,7 @@ export function NameParticles({ text }: { text: string }) {
 
       // Size the name to span most of the width. It sits in its own band just under the nav.
       // These numbers are mirrored by --name-top and --name-cap in globals.css.
+      color = getComputedStyle(canvas).color || color;
       const family = getComputedStyle(canvas).fontFamily;
       const wide = width >= 768;
       let fontSize = 200;
@@ -139,6 +142,13 @@ export function NameParticles({ text }: { text: string }) {
       pointer.y = -9999;
     };
 
+    // Recolour the dots when the theme changes (light dots on dark themes, dark dots on Classic Light).
+    const themeObserver = new MutationObserver(() => {
+      color = getComputedStyle(canvas).color || color;
+      if (!running) draw();
+    });
+    themeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ["data-theme"] });
+
     const resizeObserver = new ResizeObserver(() => build());
     resizeObserver.observe(canvas);
     const viewObserver = new IntersectionObserver(([entry]) => {
@@ -168,6 +178,7 @@ export function NameParticles({ text }: { text: string }) {
       disposed = true;
       if (frame) cancelAnimationFrame(frame);
       resizeObserver.disconnect();
+      themeObserver.disconnect();
       viewObserver.disconnect();
       window.removeEventListener("resize", onResize);
       window.removeEventListener("pointermove", onMove);
@@ -179,7 +190,7 @@ export function NameParticles({ text }: { text: string }) {
     <canvas
       ref={canvasRef}
       aria-hidden="true"
-      className="pointer-events-none absolute inset-x-0 top-0 h-[26rem] w-full font-display"
+      className="name-particles pointer-events-none absolute inset-x-0 top-0 h-[26rem] w-full font-display"
     />
   );
 }

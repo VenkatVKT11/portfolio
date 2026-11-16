@@ -98,7 +98,7 @@ export function Work() {
                     alt={`Illustration for ${card.title}`}
                     fill
                     sizes="(min-width: 1024px) 300px, (min-width: 640px) 50vw, 96px"
-                    className="object-cover transition-transform duration-700 group-hover:scale-[1.04]"
+                    className="img-soft object-cover transition-transform duration-700 group-hover:scale-[1.04]"
                   />
                 )}
               </div>

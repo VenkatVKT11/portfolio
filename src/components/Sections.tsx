@@ -8,6 +8,7 @@ import {
   projects,
   skills,
 } from "@/content/site";
+import { CountUp } from "./CountUp";
 import { Reveal } from "./Reveal";
 
 const section = "px-5 py-20 md:px-10 md:py-32";
@@ -52,14 +53,20 @@ export function About() {
 
 export function Skills() {
   return (
-    <section id="skills" className={`bg-surface ${section}`}>
+    <section id="skills" className={`band-soft border-t border-line ${section}`}>
       <div className={wrap}>
         <h2 className="h-display">{skills.heading}</h2>
         <p className="mt-4 max-w-[62ch] text-mute">{skills.intro}</p>
 
-        <div className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
-          {skills.groups.map((group) => (
-            <div key={group.name} className="card flex flex-col p-6 md:p-8">
+        <Reveal className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-2">
+          {skills.groups.map((group, i) => (
+            <div
+              key={group.name}
+              className={`card spotlight flex flex-col p-6 md:p-8 ${
+                // An odd last card spans the full row so the grid has no gap.
+                i === skills.groups.length - 1 && skills.groups.length % 2 === 1 ? "md:col-span-2" : ""
+              }`}
+            >
               <h3 className="flex items-baseline justify-between gap-4 border-b border-line pb-4 font-display text-2xl font-semibold tracking-tight">
                 {group.name}
                 <span className="font-sans text-[0.9375rem] font-normal tracking-normal text-mute">
@@ -94,7 +101,7 @@ export function Skills() {
               </div>
             </div>
           ))}
-        </div>
+        </Reveal>
       </div>
     </section>
   );
@@ -121,13 +128,13 @@ export function Experience() {
 
         <div className="mt-12 grid gap-10 lg:grid-cols-[minmax(0,1.5fr)_minmax(0,1fr)] lg:gap-14">
           {/* Formal roles, newest first */}
-          <ol className="ml-2 border-l border-line">
+          <Reveal role="list" className="timeline ml-2 border-l border-line">
             {experience.map((stop) => (
-              <li key={stop.title} className="relative pb-6 pl-7 last:pb-0 md:pl-10">
+              <div key={stop.title} role="listitem" className="relative pb-6 pl-7 last:pb-0 md:pl-10">
                 <span
                   aria-hidden="true"
                   className={`absolute -left-[6px] top-9 h-[11px] w-[11px] rounded-full ${
-                    stop.current ? "bg-blue shadow-[0_0_0_5px_rgb(20_71_255/0.16)]" : "border-2 border-blue bg-white"
+                    stop.current ? "pulse-dot bg-blue shadow-[0_0_0_5px_rgb(var(--acc-rgb)/0.25)]" : "border-2 border-blue bg-[var(--bg)]"
                   }`}
                 />
                 <div className="card p-6 md:p-8">
@@ -150,16 +157,16 @@ export function Experience() {
                   </ul>
                   <Points items={stop.points} />
                 </div>
-              </li>
+              </div>
             ))}
-          </ol>
+          </Reveal>
 
           {/* Kept apart from the roles: a learning period, then education and certificates */}
-          <div className="grid content-start gap-6">
+          <Reveal className="grid content-start gap-6">
             <div className="rounded-[28px] border border-dashed border-ink/25 bg-surface p-6 md:p-8">
               <p className="flex flex-wrap items-center gap-x-3 gap-y-1 text-[0.9375rem] font-medium text-mute">
                 {careerTransition.period}
-                <span className="rounded-full border border-line bg-white px-2.5 py-0.5 text-[0.8125rem] font-semibold text-ink">
+                <span className="rounded-full border border-line bg-surface px-2.5 py-0.5 text-[0.8125rem] font-semibold text-ink">
                   {careerTransition.label}
                 </span>
               </p>
@@ -205,19 +212,17 @@ export function Experience() {
                 </ul>
               </div>
             )}
-          </div>
+          </Reveal>
         </div>
       </div>
     </section>
   );
 }
 
-const number = new Intl.NumberFormat("en-IN");
-
 export function Results() {
   const { followers, leads } = metrics;
   return (
-    <section id="results" className={`relative overflow-hidden bg-surface ${section}`}>
+    <section id="results" className={`band-dark relative overflow-hidden ${section}`}>
       <div className="glow glow-blue left-[8%] top-44 h-80 w-80" aria-hidden="true" />
       <div className="glow glow-silver bottom-10 right-[10%] h-96 w-96" aria-hidden="true" />
 
@@ -231,47 +236,57 @@ export function Results() {
         </p>
 
         <Reveal className="mt-12 grid grid-cols-1 gap-6 md:grid-cols-3">
-          <div className="glass rounded-[28px] p-7 md:col-span-2 md:p-9">
+          <div className="glass spotlight rounded-[28px] p-7 md:col-span-2 md:p-9">
             <p className="text-mute">{followers.label}</p>
             <div className="mt-6 flex items-end justify-between gap-4">
               <p className="font-display text-4xl font-semibold leading-none tracking-tight text-mute sm:text-6xl">
-                {number.format(followers.from)}
+                <CountUp to={followers.from} />
               </p>
               <svg
                 viewBox="0 0 300 90"
-                className="h-16 w-0 min-w-0 flex-1 sm:h-20"
+                className="h-16 w-0 min-w-0 flex-1 text-blue sm:h-20"
                 fill="none"
                 aria-hidden="true"
                 preserveAspectRatio="none"
               >
-                <path d="M4 78 C 110 78, 170 16, 296 12 V 90 H 4 Z" fill="url(#rise-fill)" />
+                <path className="draw-fill" d="M4 78 C 110 78, 170 16, 296 12 V 90 H 4 Z" fill="url(#rise-fill)" />
                 <path
+                  className="draw-line"
+                  pathLength={1}
                   d="M4 78 C 110 78, 170 16, 296 12"
-                  stroke="#1447ff"
+                  stroke="currentColor"
                   strokeWidth="2.5"
                   strokeLinecap="round"
                   vectorEffect="non-scaling-stroke"
                 />
                 <defs>
                   <linearGradient id="rise-fill" x1="0" y1="0" x2="0" y2="1">
-                    <stop stopColor="#1447ff" stopOpacity="0.18" />
-                    <stop offset="1" stopColor="#1447ff" stopOpacity="0" />
+                    <stop style={{ stopColor: "var(--acc)" }} stopOpacity="0.22" />
+                    <stop offset="1" style={{ stopColor: "var(--acc)" }} stopOpacity="0" />
                   </linearGradient>
                 </defs>
               </svg>
               <p className="font-display text-4xl font-semibold leading-none tracking-tight sm:text-7xl">
-                {number.format(followers.to)}
+                <CountUp to={followers.to} from={followers.from} />
               </p>
             </div>
-            <p className="mt-6 font-semibold text-blue">+{number.format(followers.to - followers.from)} followers</p>
+            <p className="mt-6 font-semibold text-blue">
+              +<CountUp to={followers.to - followers.from} /> followers
+            </p>
           </div>
 
-          <div className="glass flex flex-col justify-between rounded-[28px] p-7 md:p-9">
+          <div className="glass spotlight flex flex-col justify-between rounded-[28px] p-7 md:p-9">
             <p className="text-mute">{leads.label}</p>
-            <p className="mt-6 font-display text-7xl font-semibold leading-none tracking-tight md:text-8xl">{leads.value}</p>
+            <p className="mt-6 font-display text-7xl font-semibold leading-none tracking-tight md:text-8xl">
+              {/^\d+\+?$/.test(leads.value) ? (
+                <CountUp to={parseInt(leads.value, 10)} suffix={leads.value.endsWith("+") ? "+" : ""} />
+              ) : (
+                leads.value
+              )}
+            </p>
           </div>
 
-          <div className="glass rounded-[28px] p-7 md:p-9">
+          <div className="glass spotlight rounded-[28px] p-7 md:p-9">
             <h3 className="text-mute">Campaign types</h3>
             <ul className="mt-4 space-y-1.5 text-xl font-medium">
               {metrics.campaignTypes.map((type) => (
@@ -280,11 +295,11 @@ export function Results() {
             </ul>
           </div>
 
-          <div className="glass rounded-[28px] p-7 md:col-span-2 md:p-9">
+          <div className="glass spotlight rounded-[28px] p-7 md:col-span-2 md:p-9">
             <h3 className="text-mute">Campaign themes</h3>
             <ul className="mt-4 flex flex-wrap gap-2.5">
               {metrics.campaignThemes.map((theme) => (
-                <li key={theme} className="rounded-full border border-line bg-white px-4 py-2 font-medium">
+                <li key={theme} className="rounded-full border border-line bg-surface px-4 py-2 font-medium">
                   {theme}
                 </li>
               ))}

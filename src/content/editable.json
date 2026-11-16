@@ -1,0 +1,475 @@
+{
+  "theme": "midnight",
+  "themePicker": false,
+  "resume": "/Venkatesan-G-Resume.pdf",
+  "about": {
+    "heading": "About me",
+    "statement": "I studied AI and data science, then took it into marketing.",
+    "paragraphs": [
+      "I started as a digital marketing intern in April 2026 and became Digital Marketing Manager that July. My day is split between performance marketing on Meta and Google, and building automations that save the team from repeating the same task twice.",
+      "I care most about lead generation, video marketing and putting AI to practical use: prompts that produce usable content, and workflows that run without someone watching them."
+    ],
+    "facts": [
+      {
+        "label": "Based in",
+        "value": "Chennai, Tamil Nadu, India"
+      },
+      {
+        "label": "Role",
+        "value": "Digital Marketing Manager"
+      },
+      {
+        "label": "Degree",
+        "value": "B.Tech, Artificial Intelligence and Data Science"
+      },
+      {
+        "label": "Languages",
+        "value": "Tamil (native), English (professional)"
+      }
+    ]
+  },
+  "projectsIntro": "Client work in e-commerce, real estate and AI automation, plus data and development projects from my GitHub. Client names are left out for confidentiality.",
+  "projects": [
+    {
+      "slug": "ecommerce-digital-marketing",
+      "featured": true,
+      "title": "E-commerce and Digital Marketing",
+      "categories": [
+        "E-commerce",
+        "Performance Marketing",
+        "Social Media"
+      ],
+      "image": "/projects/gallery/ecommerce-store.jpg",
+      "imageSource": "mockup",
+      "overview": "Worked on a cosmetics e-commerce project focused on improving online product discovery, strengthening social media presence, and supporting digital sales campaigns.",
+      "objectives": [
+        "Improve online product visibility.",
+        "Support e-commerce customer acquisition.",
+        "Increase social media engagement.",
+        "Generate potential customer enquiries.",
+        "Improve the digital shopping experience."
+      ],
+      "contributions": [
+        "Supported e-commerce website requirements and product presentation.",
+        "Worked on website functionality and user experience testing.",
+        "Planned social media content calendars.",
+        "Created marketing creatives using Canva and AI tools.",
+        "Worked on Meta Ads campaigns for awareness, engagement, and lead generation.",
+        "Supported festive promotions and B2C/B2B campaigns.",
+        "Reviewed campaign performance and audience engagement.",
+        "Supported website and checkout-flow testing."
+      ],
+      "process": [
+        "Gathered and documented the business requirements for a live store with user and admin modules.",
+        "Ran functional tests and validation checks on the implemented features.",
+        "Helped manage the Meta Ads campaign and the digital promotion of the store.",
+        "Supported the move from development and testing to the production site."
+      ],
+      "tools": [
+        "Meta Ads Manager",
+        "Canva",
+        "AI Content Creation Tools",
+        "Social Media Platforms",
+        "E-commerce Website",
+        "Google Analytics"
+      ],
+      "deliverables": [
+        "E-commerce website support",
+        "Social media content strategy",
+        "Campaign creatives",
+        "Meta Ads campaign execution",
+        "Product promotion content",
+        "Website testing and validation"
+      ],
+      "metrics": [
+        {
+          "label": "Instagram followers",
+          "value": "3,500 to 4,200"
+        },
+        {
+          "label": "Leads generated",
+          "value": "100+"
+        }
+      ],
+      "metricsNote": "Historical project figures, not current performance.",
+      "gallery": [
+        {
+          "src": "/projects/gallery/ecommerce-social.jpg",
+          "caption": "Social media content mockup"
+        }
+      ],
+      "link": ""
+    },
+    {
+      "slug": "real-estate-digital-marketing",
+      "featured": false,
+      "title": "Real Estate Digital Marketing",
+      "categories": [
+        "Real Estate",
+        "Website Development",
+        "Lead Generation"
+      ],
+      "image": "/projects/gallery/real-estate-site.jpg",
+      "imageSource": "mockup",
+      "overview": "Worked on a real estate marketing project focused on promoting residential plots through digital platforms, website support, marketing creatives, and lead-generation campaigns.",
+      "objectives": [
+        "Improve online property visibility.",
+        "Present property information effectively.",
+        "Generate potential buyer enquiries.",
+        "Support digital advertising campaigns.",
+        "Improve the customer enquiry journey."
+      ],
+      "contributions": [
+        "Supported real estate website development and content presentation.",
+        "Assisted with website functionality testing.",
+        "Worked on property marketing creatives.",
+        "Supported Meta Ads campaign planning and execution.",
+        "Developed promotional content for residential plot campaigns.",
+        "Supported lead-generation activities.",
+        "Reviewed website sections and user navigation.",
+        "Assisted with campaign content and digital promotion."
+      ],
+      "process": [
+        "Supported website development, functional testing and workflow validation.",
+        "Ran Meta Ads campaigns to drive traffic and generate leads.",
+        "Helped with implementation, issue identification and feature validation before and after launch."
+      ],
+      "tools": [
+        "Meta Ads Manager",
+        "Canva",
+        "AI Creative Tools",
+        "Website Development Tools",
+        "Social Media Platforms",
+        "SEO Fundamentals"
+      ],
+      "deliverables": [
+        "Real estate website support",
+        "Property marketing creatives",
+        "Digital advertising campaigns",
+        "Promotional content",
+        "Lead-generation campaign support",
+        "Website testing and validation"
+      ],
+      "metrics": [],
+      "metricsNote": "",
+      "gallery": [
+        {
+          "src": "/projects/gallery/real-estate-ads.jpg",
+          "caption": "Property ad creative mockup"
+        }
+      ],
+      "link": ""
+    },
+    {
+      "slug": "ai-marketing-automation",
+      "featured": true,
+      "title": "AI and Marketing Automation",
+      "categories": [
+        "Artificial Intelligence",
+        "Marketing Automation",
+        "Digital Strategy"
+      ],
+      "image": "/projects/gallery/ai-workflow.jpg",
+      "imageSource": "mockup",
+      "overview": "Worked on AI-focused technology and digital marketing initiatives involving AI content creation, marketing automation concepts, workflow optimization, and technology-focused brand communication.",
+      "objectives": [
+        "Explore AI-powered marketing opportunities.",
+        "Improve content production workflows.",
+        "Reduce repetitive marketing tasks through automation.",
+        "Develop technology-focused digital communication.",
+        "Support scalable marketing operations."
+      ],
+      "contributions": [
+        "Used prompt engineering to create structured AI content.",
+        "Explored AI-assisted image and video generation.",
+        "Developed marketing content concepts.",
+        "Worked with n8n workflow automation concepts.",
+        "Explored automated marketing workflows.",
+        "Supported technology-focused social media content.",
+        "Assisted with digital brand communication.",
+        "Explored AI tools for improving marketing productivity."
+      ],
+      "process": [],
+      "tools": [
+        "ChatGPT",
+        "Claude",
+        "n8n",
+        "Prompt Engineering",
+        "AI Image Generation",
+        "AI Video Generation",
+        "Canva",
+        "GravityWrite"
+      ],
+      "deliverables": [
+        "AI-generated marketing content",
+        "Prompt workflows",
+        "Automation workflow concepts",
+        "Social media content",
+        "Technology marketing creatives",
+        "AI-assisted content production processes"
+      ],
+      "metrics": [],
+      "metricsNote": "",
+      "gallery": [
+        {
+          "src": "/projects/gallery/ai-content.jpg",
+          "caption": "AI content mockup"
+        }
+      ],
+      "link": ""
+    },
+    {
+      "slug": "adventure-works-power-bi",
+      "featured": true,
+      "title": "Adventure Works Power BI Dashboard",
+      "categories": [
+        "Power BI",
+        "Business Intelligence",
+        "Data Storytelling"
+      ],
+      "image": "/projects/adventure-works/executive.jpg",
+      "imageSource": "screenshot",
+      "imageCaption": "Executive dashboard: revenue, profit, orders, return rate and monthly trends",
+      "overview": "An interactive Power BI report on the Adventure Works bike-shop dataset that tracks revenue, profit, orders and returns, with drill-through pages for products, customers and regions.",
+      "objectives": [
+        "Track the headline KPIs: revenue, profit, orders and return rate.",
+        "Show how sales move month by month against a trend line.",
+        "Find the top products and the product types returned most.",
+        "Let users drill from the summary into product, customer and map views."
+      ],
+      "contributions": [
+        "Built dynamic dashboards for sales, revenue, profit, returns, customer behaviour and product trends.",
+        "Wrote DAX measures for the KPI cards, month-over-month comparisons and return rates.",
+        "Created drill-through reports for product and customer detail.",
+        "Added what-if parameters, custom tooltips, anomaly highlights and visual-level filters.",
+        "Designed the pages for clear, readable data storytelling."
+      ],
+      "process": [
+        "Loaded and related the Adventure Works sales, returns, product, customer and territory tables.",
+        "Wrote DAX for the KPIs and month-over-month comparisons.",
+        "Laid out the executive summary, then the product, customer and map pages.",
+        "Added drill-through, tooltips and parameters so the report can be explored."
+      ],
+      "tools": [
+        "Power BI",
+        "DAX",
+        "Power Query",
+        "Data Modelling",
+        "Data Visualization"
+      ],
+      "deliverables": [
+        "Executive KPI dashboard",
+        "Product detail page",
+        "Customer detail page",
+        "Sales map by region",
+        "Recorded walkthrough of the report"
+      ],
+      "metrics": [
+        {
+          "label": "Revenue analysed",
+          "value": "$25M"
+        },
+        {
+          "label": "Orders analysed",
+          "value": "25K"
+        }
+      ],
+      "metricsNote": "Totals from the Adventure Works sample dataset shown in the report.",
+      "video": {
+        "src": "/projects/adventure-works/demo.mp4",
+        "poster": "/projects/adventure-works/demo-poster.jpg",
+        "caption": "Screen recording of the report in use (sound removed)."
+      },
+      "gallery": [
+        {
+          "src": "/projects/adventure-works/products.jpg",
+          "caption": "Product detail page"
+        },
+        {
+          "src": "/projects/adventure-works/customers.jpg",
+          "caption": "Customer detail page"
+        },
+        {
+          "src": "/projects/adventure-works/map.jpg",
+          "caption": "Sales map by region"
+        }
+      ],
+      "link": "https://github.com/VenkatVKT11/Adventure-Works-Power-BI",
+      "linkLabel": "View on GitHub"
+    },
+    {
+      "slug": "sales-analytics-dashboard",
+      "featured": false,
+      "title": "Sales Performance Dashboard 2025",
+      "categories": [
+        "Excel",
+        "Data Analytics",
+        "Business Intelligence"
+      ],
+      "image": "/projects/sales-2025/dashboard.jpg",
+      "imageSource": "rebuilt",
+      "imageCaption": "Dashboard sheet: KPI cards, revenue by month, region and product, with slicers",
+      "overview": "An interactive Excel dashboard built on 199 sales orders from January to March 2025, using pivot tables, KPI formulas and slicers to show revenue by month, region, product and salesperson.",
+      "objectives": [
+        "Show total revenue, order count and average order value at a glance.",
+        "Compare monthly revenue trends.",
+        "Compare performance across regions, products and salespeople.",
+        "Let the reader filter everything by month and region."
+      ],
+      "contributions": [
+        "Structured the raw order data into an Excel table.",
+        "Built pivot tables for revenue by region, month, product and salesperson.",
+        "Built KPI cards with GETPIVOTDATA so they update with the slicers.",
+        "Created pivot charts and connected month and region slicers.",
+        "Laid out a one-page dashboard for business reporting."
+      ],
+      "process": [
+        "Cleaned and structured the order data: date, region, salesperson, product, quantity, unit price, revenue.",
+        "Built the pivot analysis sheet.",
+        "Linked the KPI cells to the pivots with GETPIVOTDATA.",
+        "Designed the dashboard sheet with charts and slicers."
+      ],
+      "tools": [
+        "Microsoft Excel",
+        "Pivot Tables",
+        "Pivot Charts",
+        "Slicers",
+        "GETPIVOTDATA"
+      ],
+      "deliverables": [
+        "Interactive Excel dashboard",
+        "Pivot analysis sheet",
+        "KPI cards for revenue, orders and average order value",
+        "Revenue charts by month, region and product"
+      ],
+      "metrics": [
+        {
+          "label": "Total revenue",
+          "value": "₹1.71 Cr"
+        },
+        {
+          "label": "Orders",
+          "value": "199"
+        },
+        {
+          "label": "Average order value",
+          "value": "₹86,083"
+        },
+        {
+          "label": "Top region",
+          "value": "North"
+        }
+      ],
+      "metricsNote": "Figures from the project dataset, January to March 2025.",
+      "gallery": [
+        {
+          "src": "/projects/sales-2025/data.jpg",
+          "caption": "Sales_Data sheet: the order records behind the dashboard"
+        }
+      ],
+      "link": "https://github.com/VenkatVKT11/Sale-Data-2025",
+      "linkLabel": "View on GitHub"
+    },
+    {
+      "slug": "mintcred-landing-page",
+      "featured": true,
+      "title": "MintCred Fintech Landing Page",
+      "categories": [
+        "Landing Page",
+        "Web Development",
+        "Lead Capture"
+      ],
+      "image": "/projects/mintcred/hero.jpg",
+      "imageSource": "screenshot",
+      "imageCaption": "Hero section with the waitlist sign-up",
+      "overview": "A “coming soon” landing page for a fintech loan startup, built to earn trust quickly and collect waitlist sign-ups, with an interactive EMI calculator.",
+      "objectives": [
+        "Build trust with business owners and early investors.",
+        "Capture waitlist emails before launch.",
+        "Explain the loan products simply.",
+        "Work well on desktop, tablet and phone."
+      ],
+      "contributions": [
+        "Built the page in React with Vite and styled it with Tailwind CSS.",
+        "Added entrance and hover animations with Framer Motion.",
+        "Built a drag-to-calculate EMI calculator.",
+        "Built the waitlist form with loading and success states.",
+        "Added meta and Open Graph tags for link previews."
+      ],
+      "process": [],
+      "tools": [
+        "React",
+        "Vite",
+        "Tailwind CSS",
+        "Framer Motion",
+        "GitHub Pages"
+      ],
+      "deliverables": [
+        "Responsive landing page",
+        "EMI calculator",
+        "Waitlist capture form",
+        "SEO and social sharing tags"
+      ],
+      "metrics": [],
+      "metricsNote": "",
+      "gallery": [
+        {
+          "src": "/projects/mintcred/emi.jpg",
+          "caption": "Loan products and the EMI calculator in use"
+        }
+      ],
+      "link": "https://github.com/VenkatVKT11/mintcred-demo",
+      "linkLabel": "View on GitHub"
+    },
+    {
+      "slug": "smart-attendance-system",
+      "featured": false,
+      "title": "Smart Attendance Management System",
+      "categories": [
+        "Deep Learning",
+        "Computer Vision",
+        "Python"
+      ],
+      "image": "/projects/smart-attendance/register.jpg",
+      "imageSource": "screenshot",
+      "imageCaption": "The desktop app with the face registration form open",
+      "overview": "A desktop attendance system that registers students by face and is designed to mark attendance with face recognition and email the attendance report.",
+      "objectives": [
+        "Replace manual roll calls with face recognition.",
+        "Register each student once with name, roll number and face.",
+        "Keep an attendance list staff can open from the app.",
+        "Email the attendance report automatically."
+      ],
+      "contributions": [
+        "Built the Tkinter desktop interface for the department.",
+        "Wrote face registration with OpenCV and the face_recognition library, storing face encodings in a JSON database.",
+        "Wrote the attendance list viewer that reads the attendance CSV.",
+        "Wrote the email module that sends the report as an attachment over SMTP."
+      ],
+      "process": [],
+      "tools": [
+        "Python",
+        "OpenCV",
+        "face_recognition",
+        "Tkinter",
+        "SMTP email"
+      ],
+      "deliverables": [
+        "Desktop attendance app",
+        "Face registration",
+        "Attendance list viewer",
+        "Email report module"
+      ],
+      "metrics": [],
+      "metricsNote": "",
+      "gallery": [
+        {
+          "src": "/projects/smart-attendance/home.jpg",
+          "caption": "Start screen: camera panel, Register Faces and Display Attendance"
+        }
+      ],
+      "link": "https://github.com/VenkatVKT11/SMART-ATTENDENCE-MANAGEMENT-SYSTEM-ON-FACE-RECOGNITION-AND-EMAIL-INTEGRATION-USING-DEEP-LEARNING",
+      "linkLabel": "View on GitHub"
+    }
+  ]
+}
