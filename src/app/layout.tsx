@@ -1,7 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { Inter, Inter_Tight } from "next/font/google";
 import { site } from "@/content/site";
-import { themeIds } from "@/content/themes";
 import "./globals.css";
 
 const heading = Inter_Tight({
@@ -71,15 +70,6 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
   return (
     <html lang="en" data-theme={site.theme} data-mode={site.mode} className={`${heading.variable} ${body.variable} antialiased`} suppressHydrationWarning>
       <body>
-        {site.themePicker && (
-          // Applies a theme chosen in the preview picker before the page paints, so it never flashes.
-          <script
-            dangerouslySetInnerHTML={{
-              // Only themes that still exist are applied, so an old saved choice falls back to the default.
-              __html: `try{var d=document.documentElement,t=localStorage.getItem("vg-theme"),m=localStorage.getItem("vg-mode");if(t&&${JSON.stringify(themeIds)}.indexOf(t)>-1)d.dataset.theme=t;if(m==="light"||m==="dark")d.dataset.mode=m}catch(e){}`,
-            }}
-          />
-        )}
         {children}
       </body>
     </html>

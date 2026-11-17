@@ -38,12 +38,11 @@ export const site = {
   ga4Id: "",
   /**
    * Colour theme: one of the ids in themes.ts (pastel, noir, ivory, crimson, coral, light).
-   * themePicker shows a small switcher so you can compare them live; set it to false once you have chosen.
+   * Chosen only in the admin panel (Theme tab); visitors cannot change it.
    */
   theme: editable.theme as ThemeId,
   /** "light" or "dark": every theme has both. Set in the admin panel (Theme tab). */
   mode: editable.mode as Mode,
-  themePicker: editable.themePicker,
   /** The PDF in /public behind the Resume link and the Download Resume button. Set to "" to hide both. */
   resume: editable.resume,
   /** Your photo, stored in /public exactly as you supplied it. Set to "" to fall back to the illustration below. */

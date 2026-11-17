@@ -28,7 +28,6 @@ async function readData() {
 function validate(data: Record<string, unknown>): string | null {
   if (!themes.includes(String(data.theme))) return "Unknown theme.";
   if (data.mode !== "light" && data.mode !== "dark") return "Mode must be light or dark.";
-  if (typeof data.themePicker !== "boolean") return "themePicker must be true or false.";
   const about = data.about as Record<string, unknown> | undefined;
   if (!about || typeof about.heading !== "string" || typeof about.statement !== "string") return "About needs a heading and a statement.";
   if (!Array.isArray(about.paragraphs) || !Array.isArray(about.facts)) return "About paragraphs and facts must be lists.";
@@ -64,11 +63,11 @@ export async function PUT(request: NextRequest) {
     ...current,
     theme: incoming.theme,
     mode: incoming.mode ?? current.mode ?? "light",
-    themePicker: incoming.themePicker,
     about: incoming.about,
     projectsIntro: typeof incoming.projectsIntro === "string" ? incoming.projectsIntro : current.projectsIntro,
     projects: incoming.projects,
   };
+  delete (next as Record<string, unknown>).themePicker; // visitor theme switching was removed
   const problem = validate(next);
   if (problem) return Response.json({ error: problem }, { status: 400 });
   const temp = `${dataFile}.tmp`;

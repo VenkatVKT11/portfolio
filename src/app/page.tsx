@@ -3,7 +3,6 @@ import { Contact } from "@/components/Contact";
 import { Hero } from "@/components/Hero";
 import { Nav } from "@/components/Nav";
 import { PointerGlow } from "@/components/PointerGlow";
-import { ThemePicker } from "@/components/ThemePicker";
 import { Projects } from "@/components/Projects";
 import { ScrollCue } from "@/components/ScrollCue";
 import { Tools } from "@/components/Tools";
@@ -97,7 +96,6 @@ export default function Home() {
       ))}
       <Analytics />
       <PointerGlow />
-      <ThemePicker />
     </>
   );
 }

@@ -1,7 +1,7 @@
 /**
- * Every colour theme, in the order the picker and the admin panel show them.
+ * Every colour theme, in the order the admin panel shows them.
  * The colours themselves live in globals.css under [data-theme="…"]; `colors` here are only
- * the swatches shown in the pickers (the palette's exact colours).
+ * the swatches shown in the admin panel (the palette's exact colours).
  */
 export const themes = [
   // Built from the five supplied palettes. Each has a light and a dark mode.

@@ -14,7 +14,6 @@ type Fact = { label: string; value: string };
 type Editable = {
   theme: string;
   mode: "light" | "dark";
-  themePicker: boolean;
   resume: string;
   about: { heading: string; statement: string; paragraphs: string[]; facts: Fact[] };
   projectsIntro: string;
@@ -586,20 +585,9 @@ function ThemeTab({ data, update }: { data: Editable; update: (patch: Partial<Ed
           </Fragment>
         ))}
       </div>
-      <label className="flex items-center gap-3 rounded-xl border border-line bg-white/[0.03] px-4 py-3">
-        <input
-          type="checkbox"
-          className="h-5 w-5 accent-[var(--acc)]"
-          checked={data.themePicker}
-          onChange={(e) => update({ themePicker: e.target.checked })}
-        />
-        <span>
-          <span className="block font-semibold">Also let visitors switch themes</span>
-          <span className="block text-[0.8125rem] text-mute">
-            Off (recommended): every visitor sees the theme you pick here. On: a Theme button lets visitors choose their own.
-          </span>
-        </span>
-      </label>
+      <p className="rounded-xl border border-line bg-[var(--surface)] px-4 py-3 text-[0.875rem] text-mute">
+        Only you can change the theme, here. Visitors always see the theme and mode you save.
+      </p>
     </section>
   );
 }

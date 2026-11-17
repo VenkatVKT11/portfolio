@@ -823,28 +823,6 @@ dialog.is-closing::backdrop {
   }
 }
 
-/* Theme picker (preview only). */
-.theme-picker {
-  position: fixed;
-  right: 16px;
-  bottom: 16px;
-  z-index: 55;
-}
-.theme-swatch {
-  width: 26px;
-  height: 26px;
-  border-radius: 999px;
-  box-shadow: inset 0 0 0 2px rgb(255 255 255 / 0.18);
-  transition: transform 0.2s, box-shadow 0.2s;
-}
-.theme-swatch[aria-pressed="true"] {
-  box-shadow:
-    inset 0 0 0 2px rgb(255 255 255 / 0.9),
-    0 0 0 3px rgb(var(--acc-rgb) / 0.55);
-}
-.theme-swatch:hover {
-  transform: scale(1.12);
-}
 
 /* Soft pulse on the current role's timeline dot. */
 .pulse-dot::after {
@@ -1479,11 +1457,11 @@ dialog.is-closing::backdrop {
 /* Light mode theme tokens */
 [data-theme="noir"] {
   --hero-highlight-bg: #ffc900;
-  --hero-highlight-text: #080908;
+  --hero-highlight-text: #a37b00; /* deep gold: #FFC900 is unreadable as text on white */
 }
 [data-theme="ivory"] {
   --hero-highlight-bg: #cdf22b;
-  --hero-highlight-text: #080908;
+  --hero-highlight-text: #5b7a00; /* deep lime: #CDF22B is unreadable as text on ivory */
 }
 [data-theme="crimson"] {
   --hero-highlight-bg: rgb(212 21 20 / 0.15);
@@ -1534,20 +1512,17 @@ dialog.is-closing::backdrop {
   --hero-highlight-text: #86a0ff;
 }
 
+/* Minimal: the theme colour is in the letters only. No background, pill or underline. */
 .hero-highlight,
 :root .text-gradient {
   color: var(--hero-highlight-text);
-  background: var(--hero-highlight-bg);
-  -webkit-background-clip: border-box;
-  background-clip: border-box;
+  background: none;
   -webkit-text-fill-color: currentColor;
-  padding: 0.04em 0.2em;
-  margin: 0 -0.04em;
-  border-radius: 0.2em;
-  -webkit-box-decoration-break: clone;
-  box-decoration-break: clone;
+  padding: 0;
+  margin: 0;
+  border-radius: 0;
   display: inline;
-  transition: color 0.25s ease, background 0.25s ease;
+  transition: color 0.25s ease;
 }
 
 /* =====================================================================
