@@ -1,0 +1,184 @@
+<!doctype html>
+<!--
+  Source for public/Venkatesan-G-Resume.pdf. One US Letter page, equal margins, one left edge.
+  Rebuild the PDF with:
+    "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" --headless=new --no-pdf-header-footer \
+      --print-to-pdf=public/Venkatesan-G-Resume.pdf "file://$PWD/assets/resume/resume.html"
+  Facts come from the earlier resume and the portfolio content; nothing here is invented.
+-->
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Venkatesan G – Resume</title>
+<style>
+  @page { size: Letter; margin: 0.42in 0.5in; }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  body {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 8.9pt;
+    line-height: 1.26;
+    color: #1b1f2a;
+  }
+  a { color: inherit; text-decoration: none; }
+  .accent { color: #1f3f78; }
+
+  /* Header */
+  header { text-align: center; }
+  h1 { font-size: 20pt; font-weight: 700; letter-spacing: 0.04em; line-height: 1.1; color: #111827; }
+  .role { margin-top: 2pt; font-size: 9.8pt; font-weight: 600; color: #1f3f78; }
+  .contact { margin-top: 2pt; font-size: 8.5pt; color: #3b4252; }
+  .contact span + span::before { content: "|"; margin: 0 6pt; color: #9aa1ad; }
+  .rule { margin-top: 5pt; border: 0; border-top: 1.6pt solid #1f3f78; }
+
+  /* Sections: every block starts at the same left edge, every rule spans the full width */
+  section { margin-top: 6pt; }
+  h2 {
+    font-size: 9pt; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: #1f3f78;
+    padding-bottom: 1.5pt; border-bottom: 0.9pt solid #1f3f78; margin-bottom: 4pt;
+  }
+  .row { display: flex; justify-content: space-between; align-items: baseline; gap: 12pt; }
+  .row .when { flex: none; font-size: 8.5pt; color: #4b5263; white-space: nowrap; }
+  h3 { font-size: 9.2pt; font-weight: 700; color: #111827; }
+  h3 .org { font-weight: 600; color: #1f3f78; }
+  .entry + .entry { margin-top: 4.5pt; }
+  ul { margin-top: 1pt; padding-left: 11pt; }
+  li { margin-top: 0.8pt; padding-left: 1pt; }
+  li::marker { color: #1f3f78; }
+  p.summary { text-align: left; }
+  .skills { display: grid; grid-template-columns: 104pt 1fr; row-gap: 1.6pt; column-gap: 6pt; }
+  .skills dt { font-weight: 700; color: #111827; }
+  .compact li { margin-top: 0.6pt; }
+  /* Earlier roles: one line each, the note sits beside the title. */
+  .brief h3 .note { font-weight: 400; color: #3b4252; }
+</style>
+</head>
+<body>
+<header>
+  <h1>VENKATESAN G</h1>
+  <p class="role">Digital Marketing Manager · Performance Marketing · AI &amp; Marketing Automation</p>
+  <p class="contact">
+    <span>Chennai, Tamil Nadu, India</span><span><a href="mailto:venkatesanvkt0411@gmail.com">venkatesanvkt0411@gmail.com</a></span><span>+91 63792 29569</span>
+  </p>
+  <p class="contact">
+    <span><a href="https://venkatesanvkt-11.vercel.app">venkatesanvkt-11.vercel.app</a></span><span><a href="https://www.linkedin.com/in/venkatesan1104/">linkedin.com/in/venkatesan1104</a></span><span><a href="https://github.com/VenkatVKT11">github.com/VenkatVKT11</a></span>
+  </p>
+  <hr class="rule">
+</header>
+
+<section>
+  <h2>Professional Summary</h2>
+  <p class="summary">
+    Digital Marketing Manager with hands-on experience in Meta Ads, Google Ads, social media management, SEO and
+    AI-driven content creation. Builds websites and landing pages for clients, plans organic growth and content
+    strategies, and uses n8n and AI tools to automate marketing workflows. Background in Artificial Intelligence and
+    Data Science, with Power BI and Excel dashboards to back decisions with data.
+  </p>
+</section>
+
+<section>
+  <h2>Work Experience</h2>
+  <div class="entry">
+    <div class="row">
+      <h3>Digital Marketing Manager <span class="org">— PN Global Enterprises, Chennai</span></h3>
+      <span class="when">Jul 2026 – Present</span>
+    </div>
+    <ul>
+      <li>Handle client communication and requirement discussions, turning business goals into campaign and website plans.</li>
+      <li>Plan, launch and optimise Meta Ads and Google Ads campaigns: audience targeting, lead generation and performance analysis.</li>
+      <li>Manage 4–5 social media pages: content publishing, engagement and organic growth, and improved audience quality by removing inactive and bot followers.</li>
+      <li>Design posters and marketing creatives in Canva, and use AI tools for content ideas, image editing and video creation.</li>
+      <li>Apply SEO fundamentals (keyword research, content optimisation) and support daily operations and testing of a live e-commerce website.</li>
+    </ul>
+  </div>
+  <div class="entry">
+    <div class="row">
+      <h3>Digital Marketing Intern <span class="org">— PN Global Enterprises, Chennai</span></h3>
+      <span class="when">Apr 2026 – Jul 2026</span>
+    </div>
+    <ul>
+      <li>Supported social media management, Meta Ads and Google Ads campaigns, SEO and lead generation; promoted to Digital Marketing Manager.</li>
+    </ul>
+  </div>
+  <div class="entry brief">
+    <div class="row">
+      <h3>Data Science with Analytics &amp; AI Apprentice <span class="org">— Besant Technologies, Bengaluru</span> <span class="note">· Analytics, SQL, AI</span></h3>
+      <span class="when">Mar 2025 – Jan 2026</span>
+    </div>
+  </div>
+  <div class="entry brief">
+    <div class="row">
+      <h3>Machine Learning Intern <span class="org">— Pantech eLearning (Remote)</span> <span class="note">· ML fundamentals, Python</span></h3>
+      <span class="when">Sep 2023</span>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Projects</h2>
+  <div class="entry">
+    <h3>Cosmetics E-Commerce Website</h3>
+    <ul>
+      <li>Gathered and documented business requirements for a live cosmetics store with user and admin modules.</li>
+      <li>Ran functional tests and validation checks, and supported the move from development and testing to production.</li>
+      <li>Managed Meta Ads campaigns and digital promotion: grew Instagram followers from 3,500 to 4,200 and generated 100+ leads.</li>
+    </ul>
+  </div>
+  <div class="entry">
+    <h3>Real Estate Property Agency</h3>
+    <ul>
+      <li>Supported website development, functional testing and workflow validation, before and after launch.</li>
+      <li>Ran Meta Ads campaigns to drive traffic and generate buyer leads.</li>
+    </ul>
+  </div>
+  <div class="entry">
+    <h3>Social Media Content Strategy</h3>
+    <ul>
+      <li>Built an Instagram and Facebook content calendar featuring Reels and short-form video.</li>
+      <li>Designed brand creatives in Canva and wrote copy to strengthen brand voice, growing engagement through consistent, data-informed planning.</li>
+    </ul>
+  </div>
+  <div class="entry">
+    <h3>Data &amp; Web Projects <span class="org">— github.com/VenkatVKT11</span></h3>
+    <ul class="compact">
+      <li>Adventure Works Power BI dashboard (DAX, drill-through, KPIs) · Sales Performance Dashboard 2025 (Excel pivot tables, slicers)</li>
+      <li>MintCred fintech landing page (React, Tailwind CSS, EMI calculator) · Smart Attendance System (Python, OpenCV, face recognition)</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Skills</h2>
+  <dl class="skills">
+    <dt>Digital Marketing</dt>
+    <dd>Meta Ads, Google Ads, SEO, Keyword Research, Content Marketing &amp; Strategy, Social Media Marketing, Email Marketing, Lead Generation, Campaign Planning &amp; Optimisation, Performance Marketing, Competitor Analysis, Marketing Analytics</dd>
+    <dt>Marketing Tools</dt>
+    <dd>Google Analytics 4, Google Search Console, Meta Business Suite, Mailchimp, CRM</dd>
+    <dt>AI &amp; Automation</dt>
+    <dd>n8n, Workflow Automation, Prompt Engineering, ChatGPT, Claude, AI Content Creation, AI Video Generation</dd>
+    <dt>Creative Tools</dt>
+    <dd>Canva, Adobe Premiere Pro, Adobe After Effects, GravityWrite, Google Flow</dd>
+    <dt>Data &amp; Technical</dt>
+    <dd>Power BI, Microsoft Excel, SQL, Python, Website &amp; Landing Page Development, Git, GitHub</dd>
+  </dl>
+</section>
+
+<section>
+  <h2>Education</h2>
+  <div class="row">
+    <h3>Bachelor of Technology — Artificial Intelligence and Data Science <span class="org">— Mahendra Engineering College</span></h3>
+    <span class="when">2021 – 2024</span>
+  </div>
+</section>
+
+<section>
+  <h2>Languages &amp; Interests</h2>
+  <dl class="skills">
+    <dt>Languages</dt>
+    <dd>Tamil (Native), English (Professional Working Proficiency)</dd>
+    <dt>Areas of Interest</dt>
+    <dd>Marketing Automation, AI for Marketing, Video Marketing, Social Media Strategy, Lead Generation</dd>
+  </dl>
+</section>
+</body>
+</html>
